@@ -11,7 +11,6 @@ import com.example.demo.entity.Influencer;
 
 @Service
 public class InfluencerService {
-
     private Map<Integer, Influencer> details = new HashMap<>();
     public Influencer addInfluencer(Influencer influencer) {
         details.put(influencer.getId(), influencer);
