@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Influencer;
 import com.example.demo.service.InfluencerService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,16 +20,25 @@ public class InfluencerController {
 
     @PostMapping
     public ResponseEntity<Influencer> createInfluencer(@RequestBody Influencer inf) {
-        return ResponseEntity.ok(service.createInfluencer(inf));
+        return new ResponseEntity<>(
+                service.createInfluencer(inf),
+                HttpStatus.OK
+        );
     }
 
     @GetMapping
     public ResponseEntity<List<Influencer>> getAllInfluencers() {
-        return ResponseEntity.ok(service.getAllInfluencers());
+        return new ResponseEntity<>(
+                service.getAllInfluencers(),
+                HttpStatus.OK
+        );
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Influencer> getInfluencer(@PathVariable Long id) {
-        return ResponseEntity.ok(service.getInfluencerById(id));
+        return new ResponseEntity<>(
+                service.getInfluencerById(id),
+                HttpStatus.OK
+        );
     }
 }

@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Campaign;
 import com.example.demo.service.CampaignService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,16 +21,25 @@ public class CampaignController {
     @PutMapping("/{id}")
     public ResponseEntity<Campaign> updateCampaign(@PathVariable Long id,
                                                    @RequestBody Campaign c) {
-        return ResponseEntity.ok(service.updateCampaign(id, c));
+        return new ResponseEntity<>(
+                service.updateCampaign(id, c),
+                HttpStatus.OK
+        );
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Campaign> getCampaign(@PathVariable Long id) {
-        return ResponseEntity.ok(service.getCampaignById(id));
+        return new ResponseEntity<>(
+                service.getCampaignById(id),
+                HttpStatus.OK
+        );
     }
 
     @GetMapping
     public ResponseEntity<List<Campaign>> getAllCampaigns() {
-        return ResponseEntity.ok(service.getAllCampaigns());
+        return new ResponseEntity<>(
+                service.getAllCampaigns(),
+                HttpStatus.OK
+        );
     }
 }
