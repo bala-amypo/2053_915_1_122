@@ -1,11 +1,9 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Influencer;
-import com.example.demo.service.InfluencerService;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import com.example.demo.service.RoiService;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 @RestController
 @RequestMapping("/roi")
 public class RoiReportController {
