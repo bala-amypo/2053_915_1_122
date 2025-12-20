@@ -4,7 +4,6 @@ import com.example.demo.model.DiscountCode;
 import com.example.demo.service.DiscountCodeService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,11 +21,11 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
 
     @Override
     public List<DiscountCode> getCodesForInfluencer(Long influencerId) {
-        return new ArrayList<>();
+        return List.of();
     }
 
     @Override
     public List<DiscountCode> getCodesForCampaign(Long campaignId) {
-        return new ArrayList<>();
+        return List.of();
     }
 }
