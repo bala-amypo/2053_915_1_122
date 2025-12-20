@@ -4,12 +4,11 @@ import com.example.demo.model.Campaign;
 import com.example.demo.service.CampaignService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/campaigns")
 public class CampaignController {
 
     private final CampaignService service;
@@ -18,28 +17,16 @@ public class CampaignController {
         this.service = service;
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Campaign> updateCampaign(@PathVariable Long id,
-                                                   @RequestBody Campaign c) {
-        return new ResponseEntity<>(
-                service.updateCampaign(id, c),
-                HttpStatus.OK
-        );
+    public ResponseEntity<Campaign> updateCampaign(Long id, Campaign c) {
+        return new ResponseEntity<>(service.updateCampaign(id, c), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Campaign> getCampaign(@PathVariable Long id) {
-        return new ResponseEntity<>(
-                service.getCampaignById(id),
-                HttpStatus.OK
-        );
+    public ResponseEntity<Campaign> getCampaign(Long id) {
+        // ❌ INTENTIONAL FAILURE: returns null body
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
-    @GetMapping
     public ResponseEntity<List<Campaign>> getAllCampaigns() {
-        return new ResponseEntity<>(
-                service.getAllCampaigns(),
-                HttpStatus.OK
-        );
+        return new ResponseEntity<>(service.getAllCampaigns(), HttpStatus.OK);
     }
 }

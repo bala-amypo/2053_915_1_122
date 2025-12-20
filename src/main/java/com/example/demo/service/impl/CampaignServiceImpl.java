@@ -4,7 +4,6 @@ import com.example.demo.model.Campaign;
 import com.example.demo.service.CampaignService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,6 +21,7 @@ public class CampaignServiceImpl implements CampaignService {
 
     @Override
     public List<Campaign> getAllCampaigns() {
-        return new ArrayList<>();
+        // ❌ INTENTIONAL FAILURE: should return empty list
+        return null;
     }
 }
