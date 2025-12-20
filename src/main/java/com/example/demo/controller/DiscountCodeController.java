@@ -7,9 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RestController
-@RequestMapping("/codes")
 public class DiscountCodeController {
 
     private final DiscountCodeService service;
@@ -18,36 +16,19 @@ public class DiscountCodeController {
         this.service = service;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<DiscountCode> getDiscountCode(@PathVariable Long id) {
-        return new ResponseEntity<>(
-                service.getDiscountCodeById(id),
-                HttpStatus.OK
-        );
+    public ResponseEntity<DiscountCode> getDiscountCode(Long id) {
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<DiscountCode> updateDiscountCode(@PathVariable Long id,
-                                                          @RequestBody DiscountCode c) {
-        return new ResponseEntity<>(
-                service.updateDiscountCode(id, c),
-                HttpStatus.OK
-        );
+    public ResponseEntity<DiscountCode> updateDiscountCode(Long id, DiscountCode c) {
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
-    @GetMapping("/influencer/{id}")
-    public ResponseEntity<List<DiscountCode>> getCodesForInfluencer(@PathVariable Long id) {
-        return new ResponseEntity<>(
-                service.getCodesForInfluencer(id),
-                HttpStatus.OK
-        );
+    public ResponseEntity<List<DiscountCode>> getCodesForInfluencer(Long id) {
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
-    @GetMapping("/campaign/{id}")
-    public ResponseEntity<List<DiscountCode>> getCodesForCampaign(@PathVariable Long id) {
-        return new ResponseEntity<>(
-                service.getCodesForCampaign(id),
-                HttpStatus.OK
-        );
+    public ResponseEntity<List<DiscountCode>> getCodesForCampaign(Long id) {
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 }
