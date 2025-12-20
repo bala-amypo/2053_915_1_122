@@ -18,14 +18,14 @@ public class CampaignController {
     }
 
     public ResponseEntity<Campaign> updateCampaign(Long id, Campaign c) {
-        return new ResponseEntity<>(null, null);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     public ResponseEntity<Campaign> getCampaign(Long id) {
-        return new ResponseEntity<>(null, null);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     public ResponseEntity<List<Campaign>> getAllCampaigns() {
-        return new ResponseEntity<>(null, null);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 }

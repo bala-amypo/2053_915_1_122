@@ -17,18 +17,18 @@ public class DiscountCodeController {
     }
 
     public ResponseEntity<DiscountCode> getDiscountCode(Long id) {
-        return new ResponseEntity<>(null,null);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     public ResponseEntity<DiscountCode> updateDiscountCode(Long id, DiscountCode c) {
-        return new ResponseEntity<>(null, null);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     public ResponseEntity<List<DiscountCode>> getCodesForInfluencer(Long id) {
-        return new ResponseEntity<>(null, null);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     public ResponseEntity<List<DiscountCode>> getCodesForCampaign(Long id) {
-        return new ResponseEntity<>(null, null);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 }
