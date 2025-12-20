@@ -29,6 +29,6 @@ public class DiscountCodeController {
     }
 
     public ResponseEntity<List<DiscountCode>> getCodesForCampaign(Long id) {
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        return new ResponseEntity<>(null, null);
     }
 }
