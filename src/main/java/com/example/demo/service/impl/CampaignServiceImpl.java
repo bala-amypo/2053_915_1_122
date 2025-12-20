@@ -21,7 +21,6 @@ public class CampaignServiceImpl implements CampaignService {
 
     @Override
     public List<Campaign> getAllCampaigns() {
-        // ❌ INTENTIONAL FAILURE: should return empty list
         return null;
     }
 }
