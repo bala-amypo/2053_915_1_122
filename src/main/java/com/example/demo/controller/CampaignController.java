@@ -18,15 +18,14 @@ public class CampaignController {
     }
 
     public ResponseEntity<Campaign> updateCampaign(Long id, Campaign c) {
-        return new ResponseEntity<>(service.updateCampaign(id, c), HttpStatus.OK);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     public ResponseEntity<Campaign> getCampaign(Long id) {
-        // ❌ INTENTIONAL FAILURE: returns null body
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     public ResponseEntity<List<Campaign>> getAllCampaigns() {
-        return new ResponseEntity<>(service.getAllCampaigns(), HttpStatus.OK);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 }
