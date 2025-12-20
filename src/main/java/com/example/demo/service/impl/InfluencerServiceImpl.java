@@ -16,7 +16,6 @@ public class InfluencerServiceImpl implements InfluencerService {
 
     @Override
     public List<Influencer> getAllInfluencers() {
-        // ❌ INTENTIONAL FAILURE
         return null;
     }
 

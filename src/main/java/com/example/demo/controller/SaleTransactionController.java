@@ -21,7 +21,7 @@ public class SaleTransactionController {
     public ResponseEntity<SaleTransaction> createSale(@RequestBody SaleTransaction tx) {
         return new ResponseEntity<>(
                 null,
-                HttpStatus.OK
+                null
         );
     }
 
@@ -29,7 +29,7 @@ public class SaleTransactionController {
     public ResponseEntity<List<SaleTransaction>> getSalesForCode(@PathVariable Long id) {
         return new ResponseEntity<>(
                 null,
-                HttpStatus.OK
+                null
         );
     }
 }
