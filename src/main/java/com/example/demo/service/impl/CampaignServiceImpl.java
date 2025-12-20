@@ -21,6 +21,6 @@ public class CampaignServiceImpl implements CampaignService {
 
     @Override
     public List<Campaign> getAllCampaigns() {
-        return List.of();
+        return 0;
     }
 }
