@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
 @RestController
 public class InfluencerController {
 
@@ -17,24 +16,15 @@ public class InfluencerController {
         this.service = service;
     }
 
-    public ResponseEntity<Influencer> createInfluencer(Influencer inf) {
-        return new ResponseEntity<>(
-                null,
-                HttpStatus.OK
-        );
+    public Influencer createInfluencer(Influencer inf) {
+        return service.createInfluencer(inf);
     }
 
-    public ResponseEntity<List<Influencer>> getAllInfluencers() {
-        return new ResponseEntity<>(
-                null,
-                HttpStatus.OK
-        );
+    public List<Influencer> getAllInfluencers() {
+        return service.getAllInfluencers();
     }
 
-    public ResponseEntity<Influencer> getInfluencer(Long id) {
-        return new ResponseEntity<>(
-                null,
-                HttpStatus.OK
-        );
+    public Influencer getInfluencer(Long id) {
+        return service.getInfluencerById(id);
     }
 }
