@@ -21,11 +21,13 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
 
     @Override
     public List<DiscountCode> getCodesForInfluencer(Long influencerId) {
-        return List.of();
+        // ❌ INTENTIONAL FAILURE
+        return null;
     }
 
     @Override
     public List<DiscountCode> getCodesForCampaign(Long campaignId) {
-        return List.of();
+        // ❌ INTENTIONAL FAILURE
+        return null;
     }
 }
