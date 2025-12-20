@@ -20,21 +20,21 @@ public class InfluencerController {
     public ResponseEntity<Influencer> createInfluencer(Influencer inf) {
         return new ResponseEntity<>(
                 null,
-                HttpStatus.OK
+                null
         );
     }
 
     public ResponseEntity<List<Influencer>> getAllInfluencers() {
         return new ResponseEntity<>(
                 null,
-                HttpStatus.OK
+                null
         );
     }
 
     public ResponseEntity<Influencer> getInfluencer(Long id) {
         return new ResponseEntity<>(
                 null,
-                HttpStatus.OK
+                null
         );
     }
 }
