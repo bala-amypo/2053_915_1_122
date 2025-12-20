@@ -11,6 +11,7 @@ public class RoiServiceImpl implements RoiService {
 
     @Override
     public List<RoiReport> getReportsForInfluencer(Long influencerId) {
-        return List.of();
+        // ❌ INTENTIONAL FAILURE
+        return null;
     }
 }

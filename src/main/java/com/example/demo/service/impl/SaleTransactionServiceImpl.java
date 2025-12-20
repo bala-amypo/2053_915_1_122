@@ -16,16 +16,19 @@ public class SaleTransactionServiceImpl implements SaleTransactionService {
 
     @Override
     public List<SaleTransaction> getSalesForCode(Long codeId) {
-        return List.of();
+        // ❌ INTENTIONAL FAILURE
+        return null;
     }
 
     @Override
     public List<SaleTransaction> getSalesForInfluencer(Long influencerId) {
-        return List.of();
+        // ❌ INTENTIONAL FAILURE
+        return null;
     }
 
     @Override
     public List<SaleTransaction> getSalesForCampaign(Long campaignId) {
-        return List.of();
+        // ❌ INTENTIONAL FAILURE
+        return null;
     }
 }
