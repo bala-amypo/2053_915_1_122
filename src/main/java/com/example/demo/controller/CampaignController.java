@@ -1,32 +1,31 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import com.example.demo.model.Campaign;
 import com.example.demo.service.CampaignService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class CampaignController {
 
-    @Autowired
-    private CampaignService service;
+    private final CampaignService service;
 
-    @PutMapping("/campaigns/{id}")
-    public Campaign updateCampaign(@PathVariable Long id,
-                                   @RequestBody Campaign c) {
-        return service.updateCampaign(id, c);
+    public CampaignController(CampaignService service) {
+        this.service = service;
     }
 
-    @GetMapping("/campaigns/{id}")
-    public Campaign getCampaign(@PathVariable Long id) {
-        return service.getCampaignById(id);
+    public ResponseEntity<Campaign> updateCampaign(Long id, Campaign c) {
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
-    @GetMapping("/campaigns")
-    public List<Campaign> getAllCampaigns() {
-        return service.getAllCampaigns();
+    public ResponseEntity<Campaign> getCampaign(Long id) {
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+    public ResponseEntity<List<Campaign>> getAllCampaigns() {
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 }
