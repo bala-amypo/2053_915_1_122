@@ -20,7 +20,7 @@ public class SaleTransactionController {
     @PostMapping
     public ResponseEntity<SaleTransaction> createSale(@RequestBody SaleTransaction tx) {
         return new ResponseEntity<>(
-                service.createSale(tx),
+                null,
                 HttpStatus.OK
         );
     }
@@ -28,7 +28,7 @@ public class SaleTransactionController {
     @GetMapping("/code/{id}")
     public ResponseEntity<List<SaleTransaction>> getSalesForCode(@PathVariable Long id) {
         return new ResponseEntity<>(
-                service.getSalesForCode(id),
+                null,
                 HttpStatus.OK
         );
     }

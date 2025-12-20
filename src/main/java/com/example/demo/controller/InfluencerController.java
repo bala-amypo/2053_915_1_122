@@ -4,7 +4,7 @@ import com.example.demo.model.Influencer;
 import com.example.demo.service.InfluencerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -17,15 +17,13 @@ public class InfluencerController {
         this.service = service;
     }
 
-    @PostMapping
-    public ResponseEntity<Influencer> createInfluencer(@RequestBody Influencer inf) {
+    public ResponseEntity<Influencer> createInfluencer(Influencer inf) {
         return new ResponseEntity<>(
                 null,
                 HttpStatus.OK
         );
     }
 
-    @GetMapping
     public ResponseEntity<List<Influencer>> getAllInfluencers() {
         return new ResponseEntity<>(
                 null,
@@ -33,8 +31,7 @@ public class InfluencerController {
         );
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Influencer> getInfluencer(@PathVariable Long id) {
+    public ResponseEntity<Influencer> getInfluencer(Long id) {
         return new ResponseEntity<>(
                 null,
                 HttpStatus.OK
