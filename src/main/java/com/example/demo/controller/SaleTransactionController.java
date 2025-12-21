@@ -29,7 +29,6 @@ public class SaleTransactionController {
     public ResponseEntity<List<SaleTransaction>> getSalesForCode(@PathVariable Long id) {
         return new ResponseEntity<>(
                 null,
-                HttpStatus.OK
-        );
+                HttpStatus.OK);
     }
 }
