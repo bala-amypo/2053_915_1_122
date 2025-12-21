@@ -16,7 +16,7 @@ public class CampaignServiceImpl implements CampaignService {
 
     @Override
     public Campaign getCampaignById(Long id) {
-        return new Campaign();
+        return null;
     }
 
     @Override
