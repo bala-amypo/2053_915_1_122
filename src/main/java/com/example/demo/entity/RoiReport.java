@@ -20,14 +20,12 @@ public class RoiReport {
     public void setTotalTransactions(int totalTransactions) { 
         this.totalTransactions = totalTransactions; 
     }
-
     public double getRoiPercentage() { 
         return roiPercentage; 
     }
     public void setRoiPercentage(double roiPercentage) { 
         this.roiPercentage = roiPercentage; 
     }
-
     public DiscountCode getDiscountCode() { 
         return discountCode; 
     }

@@ -13,7 +13,6 @@ public class DiscountCode {
     public void setId(Long id) { 
         this.id = id; 
     }
-
     public String getCodeValue() { 
         return codeValue;
     }
