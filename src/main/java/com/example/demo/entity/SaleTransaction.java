@@ -22,6 +22,6 @@ public class SaleTransaction {
     public Timestamp getTransactionDate() { return transactionDate; }
     public void setTransactionDate(Timestamp transactionDate) { this.transactionDate = transactionDate; }
 
-    public DiscountCode getDiscountCode() { return discountCode; }
+    public DiscountCode getDiscountCode() { return null; }
     public void setDiscountCode(DiscountCode discountCode) { this.discountCode = discountCode; }
 }
