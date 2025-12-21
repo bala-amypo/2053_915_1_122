@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.DiscountCode;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.example.demo.service.DiscountCodeService;
 import org.springframework.web.bind.annotation.RestController;
 

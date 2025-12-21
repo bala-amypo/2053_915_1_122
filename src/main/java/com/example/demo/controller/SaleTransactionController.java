@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.SaleTransaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.example.demo.service.SaleTransactionService;
 import org.springframework.web.bind.annotation.*;
 
