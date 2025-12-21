@@ -19,16 +19,11 @@ public class SaleTransactionController {
 
     @PostMapping
     public ResponseEntity<SaleTransaction> createSale(@RequestBody SaleTransaction tx) {
-        return new ResponseEntity<>(
-                null,
-                HttpStatus.OK
-        );
+        return new ResponseEntity<>(null,HttpStatus.OK);
     }
 
     @GetMapping("/code/{id}")
     public ResponseEntity<List<SaleTransaction>> getSalesForCode(@PathVariable Long id) {
-        return new ResponseEntity<>(
-                null,
-                HttpStatus.OK);
+        return new ResponseEntity<>(null,HttpStatus.OK);
     }
 }
