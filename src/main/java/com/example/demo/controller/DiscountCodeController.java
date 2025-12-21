@@ -2,9 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.model.DiscountCode;
 import com.example.demo.service.DiscountCodeService;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,19 +15,19 @@ public class DiscountCodeController {
         this.service = service;
     }
 
-    public ResponseEntity<DiscountCode> getDiscountCode(Long id) {
-        return new ResponseEntity<>(null, HttpStatus.OK);
+    public DiscountCode getDiscountCode(Long id) {
+        return service.getDiscountCodeById(id);
     }
 
-    public ResponseEntity<DiscountCode> updateDiscountCode(Long id, DiscountCode c) {
-        return new ResponseEntity<>(null, HttpStatus.OK);
+    public DiscountCode updateDiscountCode(Long id, DiscountCode c) {
+        return service.updateDiscountCode(id, c);
     }
 
-    public ResponseEntity<List<DiscountCode>> getCodesForInfluencer(Long id) {
-        return new ResponseEntity<>(null, HttpStatus.OK);
+    public List<DiscountCode> getCodesForInfluencer(Long id) {
+        return service.getCodesForInfluencer(id);
     }
 
-    public ResponseEntity<List<DiscountCode>> getCodesForCampaign(Long id) {
-        return new ResponseEntity<>(null, HttpStatus.OK);
+    public List<DiscountCode> getCodesForCampaign(Long id) {
+        return service.getCodesForCampaign(id);
     }
 }

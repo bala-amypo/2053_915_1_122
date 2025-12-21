@@ -2,9 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.model.SaleTransaction;
 import com.example.demo.service.SaleTransactionService;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,12 +16,12 @@ public class SaleTransactionController {
     }
 
     @PostMapping
-    public ResponseEntity<SaleTransaction> createSale(@RequestBody SaleTransaction tx) {
-        return new ResponseEntity<>(null, HttpStatus.OK);
+    public SaleTransaction createSale(@RequestBody SaleTransaction tx) {
+        return service.createSale(tx);
     }
 
     @GetMapping("/code/{id}")
-    public ResponseEntity<List<SaleTransaction>> getSalesForCode(@PathVariable Long id) {
-        return new ResponseEntity<>(null, HttpStatus.OK);
+    public List<SaleTransaction> getSalesForCode(@PathVariable Long id) {
+        return service.getSalesForCode(id);
     }
 }
