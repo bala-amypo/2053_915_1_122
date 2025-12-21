@@ -2,28 +2,29 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Influencer;
 import com.example.demo.service.InfluencerService;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 public class InfluencerController {
+
     @Autowired
     InfluencerService service;
 
-    public InfluencerController(InfluencerService service) {
-        this.service = service;
-    }
-
-    public Influencer createInfluencer(Influencer inf) {
+    @PostMapping("/influencers")
+    public Influencer createInfluencer(@RequestBody Influencer inf) {
         return service.createInfluencer(inf);
     }
 
+    @GetMapping("/influencers")
     public List<Influencer> getAllInfluencers() {
         return service.getAllInfluencers();
     }
 
-    public Influencer getInfluencer(Long id) {
+    @GetMapping("/influencers/{id}")
+    public Influencer getInfluencer(@PathVariable Long id) {
         return service.getInfluencerById(id);
     }
 }

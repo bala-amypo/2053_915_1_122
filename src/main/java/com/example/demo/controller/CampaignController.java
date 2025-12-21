@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/campaigns")   // Base URL
 public class CampaignController {
     @Autowired
     CampaignService service;
