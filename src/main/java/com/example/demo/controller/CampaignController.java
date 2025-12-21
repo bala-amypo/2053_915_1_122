@@ -9,7 +9,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/campaigns")   // Base URL
 public class CampaignController {
-
+    @Autowired
     CampaignService service;
 
     public CampaignController(CampaignService service) {

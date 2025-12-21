@@ -8,18 +8,16 @@ import java.util.List;
 
 @RestController
 public class SaleTransactionController {
-
+    @Autowired
     SaleTransactionService service;
 
     public SaleTransactionController(SaleTransactionService service) {
         this.service = service;
     }
-
     @PostMapping
     public SaleTransaction createSale(@RequestBody SaleTransaction tx) {
         return service.createSale(tx);
     }
-
     @GetMapping("/code/{id}")
     public List<SaleTransaction> getSalesForCode(@PathVariable Long id) {
         return service.getSalesForCode(id);

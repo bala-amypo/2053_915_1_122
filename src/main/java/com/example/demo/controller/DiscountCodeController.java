@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 public class DiscountCodeController {
-
+    @Autowired
     DiscountCodeService service;
 
     public DiscountCodeController(DiscountCodeService service) {

@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 public class InfluencerController {
-
+    @Autowired
     InfluencerService service;
 
     public InfluencerController(InfluencerService service) {
