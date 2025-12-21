@@ -22,7 +22,6 @@ public class RoiReport {
     @ManyToOne
     private DiscountCode discountCode;
 
-    // getters and setters
     public Long getId() {
         return id;
     }

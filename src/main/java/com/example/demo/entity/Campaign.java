@@ -18,7 +18,6 @@ public class Campaign {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    // getters and setters
     public Long getId() { 
         return id; 
     }

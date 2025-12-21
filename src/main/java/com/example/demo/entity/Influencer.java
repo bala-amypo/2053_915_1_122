@@ -15,7 +15,6 @@ public class Influencer {
     private String name;
     private boolean active;
 
-    // getters & setters
     public Long getId() {
         return id;
     }

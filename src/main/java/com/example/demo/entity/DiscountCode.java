@@ -22,7 +22,6 @@ public class DiscountCode {
     @ManyToOne
     private Campaign campaign;
 
-    // getters & setters
     public Long getId() {
         return id;
     }
