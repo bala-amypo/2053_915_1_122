@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
 @RestController
 public class CampaignController {
 
@@ -17,15 +16,15 @@ public class CampaignController {
         this.service = service;
     }
 
-    public ResponseEntity<Campaign> updateCampaign(Long id, Campaign c) {
-        return new ResponseEntity<>(null, HttpStatus.OK);
+    public Campaign updateCampaign(Long id, Campaign c) {
+        return service.updateCampaign(id, c);
     }
 
-    public ResponseEntity<Campaign> getCampaign(Long id) {
-        return new ResponseEntity<>(null, HttpStatus.OK);
+    public Campaign getCampaign(Long id) {
+        return service.getCampaignById(id);
     }
 
-    public ResponseEntity<List<Campaign>> getAllCampaigns() {
-        return new ResponseEntity<>(null, HttpStatus.OK);
+    public List<Campaign> getAllCampaigns() {
+        return service.getAllCampaigns();
     }
 }
