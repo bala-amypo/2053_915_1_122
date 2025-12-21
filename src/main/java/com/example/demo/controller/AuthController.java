@@ -9,6 +9,6 @@ import com.example.demo.service.UserService;
 public class AuthController {
 
     @Autowired
-    private UserService userService;
+    UserService userService;
 
 }
