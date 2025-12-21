@@ -16,20 +16,16 @@ public class CampaignController {
         this.service = service;
     }
 
-    // UPDATE campaign
     @PutMapping("/{id}")
-    public Campaign updateCampaign(@PathVariable Long id,
-                                   @RequestBody Campaign c) {
+    public Campaign updateCampaign(@PathVariable Long id,@RequestBody Campaign c) {
         return service.updateCampaign(id, c);
     }
 
-    // GET campaign by ID
     @GetMapping("/{id}")
     public Campaign getCampaign(@PathVariable Long id) {
         return service.getCampaignById(id);
     }
 
-    // GET all campaigns
     @GetMapping
     public List<Campaign> getAllCampaigns() {
         return service.getAllCampaigns();
