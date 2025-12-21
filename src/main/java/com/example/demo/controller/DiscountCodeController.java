@@ -2,15 +2,17 @@ package com.example.demo.controller;
 
 import com.example.demo.model.DiscountCode;
 import com.example.demo.service.DiscountCodeService;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+
 @RestController
 public class DiscountCodeController {
 
-    private final DiscountCodeService service;
+    DiscountCodeService service;
 
     public DiscountCodeController(DiscountCodeService service) {
         this.service = service;

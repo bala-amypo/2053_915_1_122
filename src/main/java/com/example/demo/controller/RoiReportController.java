@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RoiReportController {
 
-    private final RoiService service;
+    RoiService service;
 
     public RoiReportController(RoiService service) {
         this.service = service;
