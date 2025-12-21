@@ -22,14 +22,26 @@ public class SaleTransaction {
     }
     public void setCustomerId(Long customerId) {
      this.customerId = customerId; 
-     }
+    }
 
-    public BigDecimal getTransactionAmount() { return transactionAmount; }
-    public void setTransactionAmount(BigDecimal transactionAmount) { this.transactionAmount = transactionAmount; }
+    public BigDecimal getTransactionAmount() { 
+    return transactionAmount; 
+    }
+    public void setTransactionAmount(BigDecimal transactionAmount) {
+     this.transactionAmount = transactionAmount; 
+    }
 
-    public Timestamp getTransactionDate() { return transactionDate; }
-    public void setTransactionDate(Timestamp transactionDate) { this.transactionDate = transactionDate; }
+    public Timestamp getTransactionDate() { 
+    return transactionDate; 
+    }
+    public void setTransactionDate(Timestamp transactionDate) { 
+    this.transactionDate = transactionDate; 
+    }
 
-    public DiscountCode getDiscountCode() { return discountCode; }
-    public void setDiscountCode(DiscountCode discountCode) { this.discountCode = discountCode; }
+    public DiscountCode getDiscountCode() { 
+    return discountCode; 
+    }
+    public void setDiscountCode(DiscountCode discountCode) { 
+    this.discountCode = discountCode; 
+    }
 }

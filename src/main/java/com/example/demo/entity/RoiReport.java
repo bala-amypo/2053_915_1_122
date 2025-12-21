@@ -8,15 +8,30 @@ public class RoiReport {
     private double roiPercentage;
     private DiscountCode discountCode;
 
-    public BigDecimal getTotalSales() { return totalSales; }
-    public void setTotalSales(BigDecimal totalSales) { this.totalSales = totalSales; }
+    public BigDecimal getTotalSales() { 
+        return totalSales; 
+    }
+    public void setTotalSales(BigDecimal totalSales) { 
+        this.totalSales = totalSales; 
+    }
+    public int getTotalTransactions() { 
+        return totalTransactions; 
+    }
+    public void setTotalTransactions(int totalTransactions) { 
+        this.totalTransactions = totalTransactions; 
+    }
 
-    public int getTotalTransactions() { return totalTransactions; }
-    public void setTotalTransactions(int totalTransactions) { this.totalTransactions = totalTransactions; }
+    public double getRoiPercentage() { 
+        return roiPercentage; 
+    }
+    public void setRoiPercentage(double roiPercentage) { 
+        this.roiPercentage = roiPercentage; 
+    }
 
-    public double getRoiPercentage() { return roiPercentage; }
-    public void setRoiPercentage(double roiPercentage) { this.roiPercentage = roiPercentage; }
-
-    public DiscountCode getDiscountCode() { return discountCode; }
-    public void setDiscountCode(DiscountCode discountCode) { this.discountCode = discountCode; }
+    public DiscountCode getDiscountCode() { 
+        return discountCode; 
+    }
+    public void setDiscountCode(DiscountCode discountCode) { 
+        this.discountCode = discountCode; 
+    }
 }
