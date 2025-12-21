@@ -22,7 +22,6 @@ public class User {
 
     private LocalDateTime createdAt;
 
-    // getters and setters
     public Long getId() { 
         return id;
     }
