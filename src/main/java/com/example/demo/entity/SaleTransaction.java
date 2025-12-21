@@ -11,37 +11,33 @@ public class SaleTransaction {
     private DiscountCode discountCode;
 
     public Long getId() { 
-    return id; 
+        return id; 
     }
     public void setId(Long id) { 
-    this.id = id; 
+        this.id = id; 
     }
-
     public Long getCustomerId() { 
-    return customerId; 
+        return customerId; 
     }
     public void setCustomerId(Long customerId) {
-     this.customerId = customerId; 
+        this.customerId = customerId; 
     }
-
     public BigDecimal getTransactionAmount() { 
-    return transactionAmount; 
+        return transactionAmount; 
     }
     public void setTransactionAmount(BigDecimal transactionAmount) {
-     this.transactionAmount = transactionAmount; 
+        this.transactionAmount = transactionAmount; 
     }
-
     public Timestamp getTransactionDate() { 
-    return transactionDate; 
+        return transactionDate; 
     }
     public void setTransactionDate(Timestamp transactionDate) { 
-    this.transactionDate = transactionDate; 
+        this.transactionDate = transactionDate; 
     }
-
     public DiscountCode getDiscountCode() { 
-    return discountCode; 
+        return discountCode; 
     }
     public void setDiscountCode(DiscountCode discountCode) { 
-    this.discountCode = discountCode; 
+        this.discountCode = discountCode; 
     }
 }
