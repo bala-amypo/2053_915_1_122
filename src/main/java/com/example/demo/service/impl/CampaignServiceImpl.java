@@ -2,10 +2,11 @@ package com.example.demo.service.impl;
 
 import com.example.demo.model.Campaign;
 import com.example.demo.service.CampaignService;
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 @Service
 public class CampaignServiceImpl implements CampaignService {
 
@@ -21,6 +22,6 @@ public class CampaignServiceImpl implements CampaignService {
 
     @Override
     public List<Campaign> getAllCampaigns() {
-        return null;
+        return new ArrayList<>();
     }
 }
