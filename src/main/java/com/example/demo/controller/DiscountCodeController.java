@@ -11,9 +11,12 @@ import java.util.List;
 @RestController
 public class DiscountCodeController {
 
-    @Autowired
-    DiscountCodeService service;
-
+    
+    private final DiscountCodeService service;
+   
+    public InfluencerController(InfluencerService service){
+        this.service=service;
+    }
     @GetMapping("/codes/{id}")
     public DiscountCode getDiscountCode(@PathVariable Long id) {
         return service.getDiscountCodeById(id);

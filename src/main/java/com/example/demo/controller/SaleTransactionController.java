@@ -9,8 +9,8 @@ import java.util.List;
 
 @RestController
 public class SaleTransactionController {
-    @Autowired
-    SaleTransactionService service;
+    
+    private final SaleTransactionService service;
 
     public SaleTransactionController(SaleTransactionService service) {
         this.service = service;

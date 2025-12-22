@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class RoiReportController {
-    @Autowired
-    RoiService service;
+    
+    private final RoiService service;
     public RoiReportController(RoiService service) {
         this.service = service;
     }

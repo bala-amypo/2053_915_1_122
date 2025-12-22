@@ -11,7 +11,9 @@ import java.util.List;
 public class InfluencerController {
 
     private final InfluencerService service;
-
+    public InfluencerController(InfluencerService service){
+        this.service=service;
+    }
     @PostMapping("/influencers")
     public Influencer createInfluencer(@RequestBody Influencer inf) {
         return service.createInfluencer(inf);
