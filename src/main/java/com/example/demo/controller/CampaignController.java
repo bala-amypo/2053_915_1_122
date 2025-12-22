@@ -2,7 +2,10 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Campaign;
 import com.example.demo.service.CampaignService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/campaigns")
@@ -14,23 +17,20 @@ public class CampaignController {
         this.campaignService = campaignService;
     }
 
-    // POST – create campaign
-    @PostMapping
-    public Campaign createCampaign(@RequestBody Campaign campaign) {
-        return campaign;
-    }
-
-    // GET – get campaign by id
-    @GetMapping("/{id}")
-    public Campaign getCampaign(@PathVariable Long id) {
-        return campaignService.getCampaignById(id);
-    }
-
-    // PUT – update campaign
     @PutMapping("/{id}")
-    public Campaign updateCampaign(
+    public ResponseEntity<Campaign> updateCampaign(
             @PathVariable Long id,
             @RequestBody Campaign campaign) {
-        return campaignService.updateCampaign(id, campaign);
+        return ResponseEntity.ok(campaignService.updateCampaign(id, campaign));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Campaign> getCampaign(@PathVariable Long id) {
+        return ResponseEntity.ok(campaignService.getCampaignById(id));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Campaign>> getAllCampaigns() {
+        return ResponseEntity.ok(campaignService.getAllCampaigns());
     }
 }

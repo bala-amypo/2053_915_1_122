@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.SaleTransaction;
 import com.example.demo.service.SaleTransactionService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,24 +17,13 @@ public class SaleTransactionController {
         this.saleTransactionService = saleTransactionService;
     }
 
-    // POST – create sale transaction
     @PostMapping
-    public SaleTransaction createSale(@RequestBody SaleTransaction transaction) {
-        return saleTransactionService.createSale(transaction);
+    public ResponseEntity<SaleTransaction> createSale(@RequestBody SaleTransaction tx) {
+        return ResponseEntity.ok(saleTransactionService.createSale(tx));
     }
 
-    // GET – get sales for discount code
     @GetMapping("/{codeId}")
-    public List<SaleTransaction> getSalesForCode(@PathVariable Long codeId) {
-        return saleTransactionService.getSalesForCode(codeId);
-    }
-
-    // PUT – update sale transaction
-    @PutMapping("/{id}")
-    public SaleTransaction updateSale(
-            @PathVariable Long id,
-            @RequestBody SaleTransaction transaction) {
-        transaction.setId(id);
-        return transaction;
+    public ResponseEntity<List<SaleTransaction>> getSalesForCode(@PathVariable Long codeId) {
+        return ResponseEntity.ok(saleTransactionService.getSalesForCode(codeId));
     }
 }
