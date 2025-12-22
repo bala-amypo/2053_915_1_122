@@ -2,31 +2,35 @@ package com.example.demo.controller;
 
 import com.example.demo.model.DiscountCode;
 import com.example.demo.service.DiscountCodeService;
-import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
+@RestController
+@RequestMapping("/api/discount-codes")
 public class DiscountCodeController {
 
-    private final DiscountCodeService service;
+    private final DiscountCodeService discountCodeService;
 
-    public DiscountCodeController(DiscountCodeService service) {
-        this.service = service;
+    public DiscountCodeController(DiscountCodeService discountCodeService) {
+        this.discountCodeService = discountCodeService;
     }
 
-    public ResponseEntity<DiscountCode> getDiscountCode(Long id) {
-        return ResponseEntity.ok(service.getDiscountCodeById(id));
+    // POST – create discount code
+    @PostMapping
+    public DiscountCode createDiscountCode(@RequestBody DiscountCode code) {
+        return code;
     }
 
-    public ResponseEntity<DiscountCode> updateDiscountCode(Long id, DiscountCode dc) {
-        return ResponseEntity.ok(service.updateDiscountCode(id, dc));
+    // GET – get discount code by id
+    @GetMapping("/{id}")
+    public DiscountCode getDiscountCode(@PathVariable Long id) {
+        return discountCodeService.getDiscountCodeById(id);
     }
 
-    public ResponseEntity<List<DiscountCode>> getCodesForInfluencer(Long id) {
-        return ResponseEntity.ok(service.getCodesForInfluencer(id));
-    }
-
-    public ResponseEntity<List<DiscountCode>> getCodesForCampaign(Long id) {
-        return ResponseEntity.ok(service.getCodesForCampaign(id));
+    // PUT – update discount code
+    @PutMapping("/{id}")
+    public DiscountCode updateDiscountCode(
+            @PathVariable Long id,
+            @RequestBody DiscountCode code) {
+        return discountCodeService.updateDiscountCode(id, code);
     }
 }
