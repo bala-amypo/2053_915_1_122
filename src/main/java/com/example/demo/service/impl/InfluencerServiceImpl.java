@@ -6,22 +6,19 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 @Service
 public class InfluencerServiceImpl implements InfluencerService {
 
-    @Override
-    public Influencer createInfluencer(Influencer influencer) {
-        return influencer;
-    }
+    @Autowired
+    private InfluencerRepository repository;
 
     @Override
-    public List<Influencer> getAllInfluencers() {
-        return new ArrayList<>();
+    public Influencer createInfluencer(Influencer influencer) {
+        return repository.save(influencer); // ✅ SAVED
     }
 
     @Override
     public Influencer getInfluencerById(Long id) {
-        return new Influencer();
+        return repository.findById(id).orElse(null); // ✅ FETCHED
     }
 }
