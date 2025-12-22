@@ -7,8 +7,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
+    // ✅ Method signature EXACTLY matches interface
     @Override
-    public User findByEmail(String email) {
+    public User getUserByEmail(String email) {
         return new User();
     }
 }

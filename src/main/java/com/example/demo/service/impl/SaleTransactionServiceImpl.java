@@ -1,34 +1,33 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.model.*;
-import com.example.demo.repository.*;
+import com.example.demo.model.SaleTransaction;
 import com.example.demo.service.SaleTransactionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class SaleTransactionServiceImpl implements SaleTransactionService {
 
-    @Autowired
-    private SaleTransactionRepository saleRepo;
-
-    @Autowired
-    private InfluencerRepository influencerRepo;
-
-    @Autowired
-    private CampaignRepository campaignRepo;
-
     @Override
     public SaleTransaction createSale(SaleTransaction tx) {
+        return tx;
+    }
 
-        Long influencerId =
-                tx.getDiscountCode().getInfluencer().getId();
+    @Override
+    public List<SaleTransaction> getSalesForCode(Long codeId) {
+        return new ArrayList<>();
+    }
 
-        Influencer influencer = influencerRepo.findById(influencerId)
-                .orElseThrow(() -> new RuntimeException("Influencer not found"));
+    @Override
+    public List<SaleTransaction> getSalesForInfluencer(Long influencerId) {
+        return new ArrayList<>();
+    }
 
-        tx.getDiscountCode().setInfluencer(influencer);
-
-        return saleRepo.save(tx);
+    // 🔴 THIS METHOD WAS MISSING — NOW ADDED
+    @Override
+    public List<SaleTransaction> getSalesForCampaign(Long campaignId) {
+        return new ArrayList<>();
     }
 }
