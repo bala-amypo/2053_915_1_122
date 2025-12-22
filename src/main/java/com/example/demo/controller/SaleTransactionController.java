@@ -15,7 +15,7 @@ public class SaleTransactionController {
     public SaleTransactionController(SaleTransactionService service) {
         this.service = service;
     }
-    @PostMapping
+    @PostMapping("/sales")
     public SaleTransaction createSale(@RequestBody SaleTransaction tx) {
         return service.createSale(tx);
     }
