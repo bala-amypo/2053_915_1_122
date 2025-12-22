@@ -9,8 +9,8 @@ import java.util.List;
 
 @RestController
 public class CampaignController {
-    @Autowired
-    CampaignService service;
+   
+    private final CampaignService service;
 
     public CampaignController(CampaignService service) {
         this.service = service;

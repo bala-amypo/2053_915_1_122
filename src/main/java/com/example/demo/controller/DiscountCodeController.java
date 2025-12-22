@@ -14,7 +14,7 @@ public class DiscountCodeController {
     
     private final DiscountCodeService service;
    
-    public InfluencerController(InfluencerService service){
+    public DiscountCodeController(DiscountCodeService service){
         this.service=service;
     }
     @GetMapping("/codes/{id}")

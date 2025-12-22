@@ -8,7 +8,9 @@ import com.example.demo.service.UserService;
 @RestController
 public class AuthController {
 
-    @Autowired
-    UserService userService;
     
+    private final UserService userService;
+    public AuthController(UserService userService){
+        this.userService=userService;
+    }
 }
