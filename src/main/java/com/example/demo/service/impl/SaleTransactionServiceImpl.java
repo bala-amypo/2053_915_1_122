@@ -1,3 +1,13 @@
+package com.example.demo.service.impl;
+
+import com.example.demo.model.SaleTransaction;
+import com.example.demo.repository.DiscountCodeRepository;
+import com.example.demo.repository.SaleTransactionRepository;
+import com.example.demo.service.SaleTransactionService;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 @Service
 public class SaleTransactionServiceImpl implements SaleTransactionService {
 
@@ -7,6 +17,7 @@ public class SaleTransactionServiceImpl implements SaleTransactionService {
     public SaleTransactionServiceImpl(
             SaleTransactionRepository saleTransactionRepository,
             DiscountCodeRepository discountCodeRepository) {
+
         this.saleTransactionRepository = saleTransactionRepository;
         this.discountCodeRepository = discountCodeRepository;
     }

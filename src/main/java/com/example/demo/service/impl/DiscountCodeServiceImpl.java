@@ -18,6 +18,7 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
             DiscountCodeRepository discountCodeRepository,
             InfluencerRepository influencerRepository,
             CampaignRepository campaignRepository) {
+
         this.discountCodeRepository = discountCodeRepository;
         this.influencerRepository = influencerRepository;
         this.campaignRepository = campaignRepository;
@@ -25,6 +26,7 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
 
     @Override
     public DiscountCode createDiscountCode(DiscountCode code) {
+
         Influencer influencer = influencerRepository.findById(
                 code.getInfluencer().getId())
                 .orElseThrow(() -> new RuntimeException("Influencer not found"));
@@ -58,7 +60,6 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
         return discountCodeRepository.findByInfluencer_Id(influencerId);
     }
 
-    // 🔥 THIS METHOD WAS MISSING → NOW FIXED
     @Override
     public List<DiscountCode> getCodesForCampaign(Long campaignId) {
         return discountCodeRepository.findByCampaign_Id(campaignId);

@@ -1,3 +1,13 @@
+package com.example.demo.service.impl;
+
+import com.example.demo.model.RoiReport;
+import com.example.demo.repository.DiscountCodeRepository;
+import com.example.demo.repository.RoiReportRepository;
+import com.example.demo.service.RoiService;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 @Service
 public class RoiServiceImpl implements RoiService {
 
@@ -7,6 +17,7 @@ public class RoiServiceImpl implements RoiService {
     public RoiServiceImpl(
             RoiReportRepository roiReportRepository,
             DiscountCodeRepository discountCodeRepository) {
+
         this.roiReportRepository = roiReportRepository;
         this.discountCodeRepository = discountCodeRepository;
     }
