@@ -1,9 +1,12 @@
 package com.example.demo.repository;
 
-import com.example.demo.model.Influencer;
+import com.example.demo.entity.Influencer;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
+import java.util.Optional;
+
 public interface InfluencerRepository extends JpaRepository<Influencer, Long> {
+
+    // REQUIRED by tests
+    Optional<Influencer> findBySocialHandle(String socialHandle);
 }

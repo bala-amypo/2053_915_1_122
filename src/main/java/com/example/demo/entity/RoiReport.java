@@ -1,34 +1,89 @@
-package com.example.demo.model;
+package com.example.demo.entity;
 
 import jakarta.persistence.*;
+
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 @Entity
+@Table(name = "roi_reports")
 public class RoiReport {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private BigDecimal totalSales;
-    private int totalTransactions;
-    private Double roiPercentage;
+    @ManyToOne
+    @JoinColumn(name = "campaign_id")
+    private Campaign campaign;
 
     @ManyToOne
-    private DiscountCode discountCode;
+    @JoinColumn(name = "influencer_id")
+    private Influencer influencer;
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    @Column(nullable = false)
+    private BigDecimal totalSales;
 
-    public BigDecimal getTotalSales() { return totalSales; }
-    public void setTotalSales(BigDecimal totalSales) { this.totalSales = totalSales; }
+    @Column(nullable = false)
+    private BigDecimal totalRevenue;
 
-    public int getTotalTransactions() { return totalTransactions; }
-    public void setTotalTransactions(int totalTransactions) { this.totalTransactions = totalTransactions; }
+    @Column(nullable = false)
+    private BigDecimal roiPercentage;
 
-    public Double getRoiPercentage() { return roiPercentage; }
-    public void setRoiPercentage(Double roiPercentage) { this.roiPercentage = roiPercentage; }
+    private Timestamp generatedAt;
 
-    public DiscountCode getDiscountCode() { return discountCode; }
-    public void setDiscountCode(DiscountCode discountCode) { this.discountCode = discountCode; }
+    @PrePersist
+    protected void onCreate() {
+        this.generatedAt = new Timestamp(System.currentTimeMillis());
+    }
+
+    // ===== Getters & Setters =====
+
+    public Long getId() {
+        return id;
+    }
+
+    public Campaign getCampaign() {
+        return campaign;
+    }
+
+    public void setCampaign(Campaign campaign) {
+        this.campaign = campaign;
+    }
+
+    public Influencer getInfluencer() {
+        return influencer;
+    }
+
+    public void setInfluencer(Influencer influencer) {
+        this.influencer = influencer;
+    }
+
+    public BigDecimal getTotalSales() {
+        return totalSales;
+    }
+
+    public void setTotalSales(BigDecimal totalSales) {
+        this.totalSales = totalSales;
+    }
+
+    public BigDecimal getTotalRevenue() {
+        return totalRevenue;
+    }
+
+    public void setTotalRevenue(BigDecimal totalRevenue) {
+        this.totalRevenue = totalRevenue;
+    }
+
+    public BigDecimal getRoiPercentage() {
+        return roiPercentage;
+    }
+
+    public void setRoiPercentage(BigDecimal roiPercentage) {
+        this.roiPercentage = roiPercentage;
+    }
+
+    public Timestamp getGeneratedAt() {
+        return generatedAt;
+    }
 }
