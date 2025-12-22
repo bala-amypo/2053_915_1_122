@@ -1,14 +1,21 @@
 package com.example.demo.model;
 
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-@Entity
 
+@Entity
 public class SaleTransaction {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private Long customerId;
     private BigDecimal transactionAmount;
     private Timestamp transactionDate;
+
+    @ManyToOne
     private DiscountCode discountCode;
 
     public Long getId() { return id; }

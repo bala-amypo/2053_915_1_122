@@ -1,16 +1,24 @@
 package com.example.demo.model;
 
+import jakarta.persistence.*;
 import java.math.BigDecimal;
-@Entity
 
+@Entity
 public class RoiReport {
-    private DiscountCode discountCode;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private BigDecimal totalSales;
     private int totalTransactions;
     private Double roiPercentage;
 
-    public DiscountCode getDiscountCode() { return discountCode; }
-    public void setDiscountCode(DiscountCode discountCode) { this.discountCode = discountCode; }
+    @ManyToOne
+    private DiscountCode discountCode;
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
     public BigDecimal getTotalSales() { return totalSales; }
     public void setTotalSales(BigDecimal totalSales) { this.totalSales = totalSales; }
@@ -20,4 +28,7 @@ public class RoiReport {
 
     public Double getRoiPercentage() { return roiPercentage; }
     public void setRoiPercentage(Double roiPercentage) { this.roiPercentage = roiPercentage; }
+
+    public DiscountCode getDiscountCode() { return discountCode; }
+    public void setDiscountCode(DiscountCode discountCode) { this.discountCode = discountCode; }
 }

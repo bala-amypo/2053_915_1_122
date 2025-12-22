@@ -1,8 +1,14 @@
 package com.example.demo.model;
-@Entity
 
+import jakarta.persistence.*;
+
+@Entity
 public class Influencer {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private boolean active;
 
