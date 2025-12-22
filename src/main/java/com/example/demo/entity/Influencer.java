@@ -2,7 +2,15 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 
+import java.sql.Timestamp;
+
 @Entity
+@Table(
+    name = "influencers",
+    uniqueConstraints = {
+        @UniqueConstraint(columnNames = "socialHandle")
+    }
+)
 public class Influencer {
 
     @Id
@@ -10,14 +18,69 @@ public class Influencer {
     private Long id;
 
     private String name;
-    private boolean active;
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    @Column(nullable = false, unique = true)
+    private String socialHandle;
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    private String email;
 
-    public boolean isActive() { return active; }
-    public void setActive(boolean active) { this.active = active; }
+    private Boolean active;
+
+    private Timestamp createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = new Timestamp(System.currentTimeMillis());
+        if (this.active == null) {
+            this.active = true;
+        }
+    }
+
+    // ========= GETTERS & SETTERS =========
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // 🔴 REQUIRED by InfluencerServiceImpl
+    public String getSocialHandle() {
+        return socialHandle;
+    }
+
+    public void setSocialHandle(String socialHandle) {
+        this.socialHandle = socialHandle;
+    }
+
+    // 🔴 REQUIRED by InfluencerServiceImpl
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
 }
