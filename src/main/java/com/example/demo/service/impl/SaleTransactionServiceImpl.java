@@ -1,11 +1,13 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.model.SaleTransaction;
+import com.example.demo.entity.DiscountCode;
+import com.example.demo.entity.SaleTransaction;
 import com.example.demo.repository.DiscountCodeRepository;
 import com.example.demo.repository.SaleTransactionRepository;
 import com.example.demo.service.SaleTransactionService;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -23,12 +25,24 @@ public class SaleTransactionServiceImpl implements SaleTransactionService {
     }
 
     @Override
-    public SaleTransaction createSale(SaleTransaction tx) {
-        tx.setDiscountCode(
-                discountCodeRepository.findById(tx.getDiscountCode().getId())
-                        .orElseThrow(() -> new RuntimeException("Discount code not found"))
-        );
-        return saleTransactionRepository.save(tx);
+    public SaleTransaction logTransaction(SaleTransaction transaction) {
+
+        if (transaction.getSaleAmount().compareTo(BigDecimal.ZERO) <= 0) {
+            throw new RuntimeException("Sale amount must be positive");
+        }
+
+        DiscountCode code = discountCodeRepository.findById(
+                transaction.getDiscountCode().getId())
+                .orElseThrow(() -> new RuntimeException("Discount code not found"));
+
+        transaction.setDiscountCode(code);
+        return saleTransactionRepository.save(transaction);
+    }
+
+    @Override
+    public SaleTransaction getTransactionById(Long id) {
+        return saleTransactionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Transaction not found"));
     }
 
     @Override

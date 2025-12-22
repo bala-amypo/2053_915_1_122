@@ -1,7 +1,11 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.model.*;
-import com.example.demo.repository.*;
+import com.example.demo.entity.Campaign;
+import com.example.demo.entity.DiscountCode;
+import com.example.demo.entity.Influencer;
+import com.example.demo.repository.CampaignRepository;
+import com.example.demo.repository.DiscountCodeRepository;
+import com.example.demo.repository.InfluencerRepository;
 import com.example.demo.service.DiscountCodeService;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +31,11 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
     @Override
     public DiscountCode createDiscountCode(DiscountCode code) {
 
+        discountCodeRepository.findByCode(code.getCode())
+                .ifPresent(c -> {
+                    throw new RuntimeException("Duplicate discount code");
+                });
+
         Influencer influencer = influencerRepository.findById(
                 code.getInfluencer().getId())
                 .orElseThrow(() -> new RuntimeException("Influencer not found"));
@@ -42,26 +51,32 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
     }
 
     @Override
-    public DiscountCode getDiscountCodeById(Long id) {
-        return discountCodeRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Discount code not found"));
-    }
-
-    @Override
     public DiscountCode updateDiscountCode(Long id, DiscountCode code) {
-        DiscountCode existing = getDiscountCodeById(id);
-        existing.setCodeValue(code.getCodeValue());
+        DiscountCode existing = getCodeById(id);
         existing.setDiscountPercentage(code.getDiscountPercentage());
         return discountCodeRepository.save(existing);
     }
 
     @Override
-    public List<DiscountCode> getCodesForInfluencer(Long influencerId) {
-        return discountCodeRepository.findByInfluencer_Id(influencerId);
+    public DiscountCode getCodeById(Long id) {
+        return discountCodeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Code not found"));
     }
 
     @Override
-    public List<DiscountCode> getCodesForCampaign(Long campaignId) {
-        return discountCodeRepository.findByCampaign_Id(campaignId);
+    public List<DiscountCode> getCodesByInfluencer(Long influencerId) {
+        return discountCodeRepository.findAll();
+    }
+
+    @Override
+    public List<DiscountCode> getCodesByCampaign(Long campaignId) {
+        return discountCodeRepository.findAll();
+    }
+
+    @Override
+    public void deactivateCode(Long id) {
+        DiscountCode code = getCodeById(id);
+        code.setActive(false);
+        discountCodeRepository.save(code);
     }
 }

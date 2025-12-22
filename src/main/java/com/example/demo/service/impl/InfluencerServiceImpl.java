@@ -1,6 +1,6 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.model.Influencer;
+import com.example.demo.entity.Influencer;
 import com.example.demo.repository.InfluencerRepository;
 import com.example.demo.service.InfluencerService;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,19 @@ public class InfluencerServiceImpl implements InfluencerService {
 
     @Override
     public Influencer createInfluencer(Influencer influencer) {
+        influencerRepository.findBySocialHandle(influencer.getSocialHandle())
+                .ifPresent(i -> {
+                    throw new RuntimeException("Influencer already exists");
+                });
         return influencerRepository.save(influencer);
+    }
+
+    @Override
+    public Influencer updateInfluencer(Long id, Influencer influencer) {
+        Influencer existing = getInfluencerById(id);
+        existing.setName(influencer.getName());
+        existing.setEmail(influencer.getEmail());
+        return influencerRepository.save(existing);
     }
 
     @Override
@@ -30,5 +42,12 @@ public class InfluencerServiceImpl implements InfluencerService {
     @Override
     public List<Influencer> getAllInfluencers() {
         return influencerRepository.findAll();
+    }
+
+    @Override
+    public void deactivateInfluencer(Long id) {
+        Influencer inf = getInfluencerById(id);
+        inf.setActive(false);
+        influencerRepository.save(inf);
     }
 }
