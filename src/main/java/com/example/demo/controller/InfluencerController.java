@@ -10,8 +10,7 @@ import java.util.List;
 @RestController
 public class InfluencerController {
 
-    @Autowired
-    InfluencerService service;
+    private final InfluencerService service;
 
     @PostMapping("/influencers")
     public Influencer createInfluencer(@RequestBody Influencer inf) {
