@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import java.math.BigDecimal;
+@Entity
 
 public class RoiReport {
     private DiscountCode discountCode;

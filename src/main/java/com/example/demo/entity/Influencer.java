@@ -1,4 +1,5 @@
 package com.example.demo.model;
+@Entity
 
 public class Influencer {
     private Long id;

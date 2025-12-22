@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+@Entity
 
 public class SaleTransaction {
     private Long id;

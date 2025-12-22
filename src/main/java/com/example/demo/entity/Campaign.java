@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import java.time.LocalDate;
+@Entity
 
 public class Campaign {
     private Long id;
