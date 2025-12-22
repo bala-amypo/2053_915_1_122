@@ -1,32 +1,41 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.model.DiscountCode;
+import com.example.demo.model.*;
+import com.example.demo.repository.*;
 import com.example.demo.service.DiscountCodeService;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class DiscountCodeServiceImpl implements DiscountCodeService {
 
-    @Override
-    public DiscountCode getDiscountCodeById(Long id) {
-        return new DiscountCode();
+    private final DiscountCodeRepository discountCodeRepository;
+    private final InfluencerRepository influencerRepository;
+    private final CampaignRepository campaignRepository;
+
+    public DiscountCodeServiceImpl(
+            DiscountCodeRepository discountCodeRepository,
+            InfluencerRepository influencerRepository,
+            CampaignRepository campaignRepository) {
+
+        this.discountCodeRepository = discountCodeRepository;
+        this.influencerRepository = influencerRepository;
+        this.campaignRepository = campaignRepository;
     }
 
     @Override
-    public DiscountCode updateDiscountCode(Long id, DiscountCode code) {
-        return code;
-    }
+    public DiscountCode createDiscountCode(DiscountCode code) {
 
-    @Override
-    public List<DiscountCode> getCodesForInfluencer(Long influencerId) {
-        return new ArrayList<>();
-    }
+        Influencer influencer = influencerRepository.findById(
+                code.getInfluencer().getId())
+                .orElseThrow(() -> new RuntimeException("Influencer not found"));
 
-    @Override
-    public List<DiscountCode> getCodesForCampaign(Long campaignId) {
-        return new ArrayList<>();
+        Campaign campaign = campaignRepository.findById(
+                code.getCampaign().getId())
+                .orElseThrow(() -> new RuntimeException("Campaign not found"));
+
+        code.setInfluencer(influencer);
+        code.setCampaign(campaign);
+
+        return discountCodeRepository.save(code);
     }
 }

@@ -1,15 +1,22 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.model.User;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    // ✅ Method signature EXACTLY matches interface
+    private final UserRepository userRepository;
+
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @Override
     public User getUserByEmail(String email) {
-        return new User();
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
     }
 }
