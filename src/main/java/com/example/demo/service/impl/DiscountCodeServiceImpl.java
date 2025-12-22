@@ -12,25 +12,21 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
 
     @Override
     public DiscountCode getDiscountCodeById(Long id) {
-        // Safe non-null object
         return new DiscountCode();
     }
 
     @Override
     public DiscountCode updateDiscountCode(Long id, DiscountCode code) {
-        // Just return what is updated
         return code;
     }
 
     @Override
     public List<DiscountCode> getCodesForInfluencer(Long influencerId) {
-        // NEVER return null
         return new ArrayList<>();
     }
 
     @Override
     public List<DiscountCode> getCodesForCampaign(Long campaignId) {
-        // NEVER return null
         return new ArrayList<>();
     }
 }

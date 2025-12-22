@@ -12,7 +12,6 @@ public class RoiServiceImpl implements RoiService {
 
     @Override
     public List<RoiReport> getReportsForInfluencer(Long influencerId) {
-        // NEVER return null for a List
         return new ArrayList<>();
     }
 }
