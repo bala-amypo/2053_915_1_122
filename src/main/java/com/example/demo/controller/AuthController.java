@@ -1,48 +1,28 @@
 package com.example.demo.controller;
 
-import com.example.demo.security.JwtUtil;
+import com.example.demo.entity.User;
+import com.example.demo.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
-
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
+@Tag(name = "Authentication")
 public class AuthController {
 
-    private final JwtUtil jwtUtil;
+    private final UserService userService;
 
-    public AuthController(JwtUtil jwtUtil) {
-        this.jwtUtil = jwtUtil;
+    public AuthController(UserService userService) {
+        this.userService = userService;
     }
 
-    // POST – login (takes input WITHOUT DTO, JWT, or Security logic)
+    @PostMapping("/register")
+    public User register(@RequestBody User user) {
+        return userService.registerUser(user);
+    }
+
     @PostMapping("/login")
-    public String login(@RequestBody Map<String, String> body) {
-
-        // Accept user input
-        String email = body.get("email");
-        String password = body.get("password");
-
-        // Do NOT authenticate (tests don’t expect it)
-        // Do NOT generate JWT
-        // Do NOT touch security
-
-        if (email == null || password == null) {
-            return "invalid input";
-        }
-
-        return "login successful";
-    }
-
-    // GET – validate token (already exists, untouched)
-    @GetMapping("/validate")
-    public boolean validate(@RequestParam String token) {
-        return jwtUtil.validateToken(token);
-    }
-
-    // PUT – refresh token (concept)
-    @PutMapping("/refresh")
-    public String refresh() {
-        return "new token";
+    public User login(@RequestBody User user) {
+        return userService.findByEmail(user.getEmail());
     }
 }
