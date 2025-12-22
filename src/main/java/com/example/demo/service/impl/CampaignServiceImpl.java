@@ -1,10 +1,10 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.Campaign;
 import com.example.demo.service.CampaignService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -12,19 +12,19 @@ public class CampaignServiceImpl implements CampaignService {
 
     @Override
     public Campaign updateCampaign(Long id, Campaign campaign) {
-        // Just return what was passed (simple logic)
+        if (id == null) {
+            throw new ResourceNotFoundException("Campaign ID cannot be null");
+        }
         return campaign;
     }
 
     @Override
     public Campaign getCampaignById(Long id) {
-        // Return an empty Campaign object instead of null
-        return new Campaign();
+        throw new ResourceNotFoundException("Campaign not found with id: " + id);
     }
 
     @Override
     public List<Campaign> getAllCampaigns() {
-        // Always return a list, NEVER null
-        return new ArrayList<>();
+        return null;
     }
 }
