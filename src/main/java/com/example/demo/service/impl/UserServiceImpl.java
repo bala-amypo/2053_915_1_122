@@ -10,14 +10,12 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
-    // ⚠️ Constructor FIXED (no PasswordEncoder)
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @Override
     public User registerUser(User user) {
-        // No encoding for now
         return userRepository.save(user);
     }
 

@@ -7,6 +7,5 @@ import java.util.Optional;
 
 public interface DiscountCodeRepository extends JpaRepository<DiscountCode, Long> {
 
-    // REQUIRED by tests
     Optional<DiscountCode> findByCode(String code);
 }

@@ -7,6 +7,5 @@ import java.util.Optional;
 
 public interface InfluencerRepository extends JpaRepository<Influencer, Long> {
 
-    // REQUIRED by tests
     Optional<Influencer> findBySocialHandle(String socialHandle);
 }

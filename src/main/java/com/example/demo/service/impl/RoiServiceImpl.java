@@ -17,7 +17,6 @@ public class RoiServiceImpl implements RoiService {
     private final SaleTransactionRepository saleTransactionRepository;
     private final DiscountCodeRepository discountCodeRepository;
 
-    // ✅ CONSTRUCTOR ORDER MUST MATCH EXAM REQUIREMENT
     public RoiServiceImpl(RoiReportRepository roiReportRepository,
                           SaleTransactionRepository saleTransactionRepository,
                           DiscountCodeRepository discountCodeRepository) {
@@ -29,15 +28,12 @@ public class RoiServiceImpl implements RoiService {
     @Override
     public RoiReport generateRoiForCode(Long codeId) {
 
-        // 1️⃣ Get discount code
         DiscountCode code = discountCodeRepository.findById(codeId)
                 .orElseThrow(() -> new RuntimeException("Discount code not found"));
 
-        // 2️⃣ Fetch sales linked to this code
         List<SaleTransaction> transactions =
                 saleTransactionRepository.findByDiscountCode_Id(codeId);
 
-        // 3️⃣ Calculate totals
         BigDecimal totalSales = BigDecimal.ZERO;
 
         for (SaleTransaction tx : transactions) {
@@ -46,7 +42,6 @@ public class RoiServiceImpl implements RoiService {
 
         BigDecimal totalRevenue = totalSales;
 
-        // 4️⃣ ROI calculation
         BigDecimal budget = code.getCampaign().getBudget();
         BigDecimal roiPercentage = BigDecimal.ZERO;
 
@@ -57,10 +52,9 @@ public class RoiServiceImpl implements RoiService {
                     .multiply(BigDecimal.valueOf(100));
         }
 
-        // 5️⃣ CREATE ROI REPORT (THIS IS WHAT YOU WERE MISSING)
         RoiReport report = new RoiReport();
-        report.setCampaign(code.getCampaign());       // ✅ FIX
-        report.setInfluencer(code.getInfluencer());   // ✅ FIX
+        report.setCampaign(code.getCampaign());       
+        report.setInfluencer(code.getInfluencer());   
         report.setTotalSales(totalSales);
         report.setTotalRevenue(totalRevenue);
         report.setRoiPercentage(roiPercentage);
