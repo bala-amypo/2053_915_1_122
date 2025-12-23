@@ -37,7 +37,6 @@ public class RoiReport {
         this.generatedAt = new Timestamp(System.currentTimeMillis());
     }
 
-    // ===== Getters & Setters =====
 
     public Long getId() {
         return id;

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "users")   // "user" is a reserved keyword in some DBs
+@Table(name = "users")   
 public class User {
 
     @Id

@@ -39,7 +39,6 @@ public class Campaign {
         }
     }
 
-    // ===== Getters & Setters =====
 
     public Long getId() {
         return id;

@@ -37,7 +37,6 @@ public class DiscountCode {
         }
     }
 
-    // ===== Getters & Setters =====
 
     public Long getId() {
         return id;
