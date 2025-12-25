@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.example.demo.model;
 
 import jakarta.persistence.*;
 
@@ -22,7 +22,6 @@ public class DiscountCode {
     @JoinColumn(name = "campaign_id")
     private Campaign campaign;
 
-    // getters and setters
     public Long getId() {
         return id;
     }
