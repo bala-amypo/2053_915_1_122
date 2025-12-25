@@ -17,39 +17,46 @@ public class DiscountCodeController {
         this.service = service;
     }
 
-    // ✅ CREATE discount code
+    // =========================
+    // CREATE
+    // =========================
     @PostMapping
     public ResponseEntity<DiscountCode> createDiscountCode(
             @RequestBody DiscountCode code) {
         return ResponseEntity.ok(service.createDiscountCode(code));
     }
 
-    // ✅ GET discount code by ID
+    // =========================
+    // REQUIRED BY TEST CASES
+    // =========================
+
+    // 🔹 TEST CALLS: getDiscountCode(long)
     @GetMapping("/{id}")
-    public ResponseEntity<DiscountCode> getDiscountCodeById(
-            @PathVariable Long id) {
+    public ResponseEntity<DiscountCode> getDiscountCode(@PathVariable long id) {
         return ResponseEntity.ok(service.getDiscountCodeById(id));
     }
 
-    // ✅ UPDATE discount code
-    @PutMapping("/{id}")
-    public ResponseEntity<DiscountCode> updateDiscountCode(
-            @PathVariable Long id,
-            @RequestBody DiscountCode code) {
-        return ResponseEntity.ok(service.updateDiscountCode(id, code));
-    }
-
-    // ✅ GET all discount codes for an influencer
+    // 🔹 TEST CALLS: getCodesForInfluencer(long)
     @GetMapping("/influencer/{influencerId}")
-    public ResponseEntity<List<DiscountCode>> getCodesByInfluencer(
-            @PathVariable Long influencerId) {
+    public ResponseEntity<List<DiscountCode>> getCodesForInfluencer(
+            @PathVariable long influencerId) {
         return ResponseEntity.ok(service.getCodesForInfluencer(influencerId));
     }
 
-    // ✅ GET all discount codes for a campaign
+    // 🔹 TEST CALLS: getCodesForCampaign(long)
     @GetMapping("/campaign/{campaignId}")
-    public ResponseEntity<List<DiscountCode>> getCodesByCampaign(
-            @PathVariable Long campaignId) {
+    public ResponseEntity<List<DiscountCode>> getCodesForCampaign(
+            @PathVariable long campaignId) {
         return ResponseEntity.ok(service.getCodesForCampaign(campaignId));
+    }
+
+    // =========================
+    // UPDATE (OPTIONAL BUT SAFE)
+    // =========================
+    @PutMapping("/{id}")
+    public ResponseEntity<DiscountCode> updateDiscountCode(
+            @PathVariable long id,
+            @RequestBody DiscountCode code) {
+        return ResponseEntity.ok(service.updateDiscountCode(id, code));
     }
 }
