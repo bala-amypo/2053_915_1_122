@@ -17,11 +17,21 @@ public class DiscountCodeController {
         this.service = service;
     }
 
+    // ✅ CREATE discount code
+    @PostMapping
+    public ResponseEntity<DiscountCode> createDiscountCode(
+            @RequestBody DiscountCode code) {
+        return ResponseEntity.ok(service.createDiscountCode(code));
+    }
+
+    // ✅ GET discount code by ID
     @GetMapping("/{id}")
-    public ResponseEntity<DiscountCode> getDiscountCode(@PathVariable Long id) {
+    public ResponseEntity<DiscountCode> getDiscountCodeById(
+            @PathVariable Long id) {
         return ResponseEntity.ok(service.getDiscountCodeById(id));
     }
 
+    // ✅ UPDATE discount code
     @PutMapping("/{id}")
     public ResponseEntity<DiscountCode> updateDiscountCode(
             @PathVariable Long id,
@@ -29,22 +39,17 @@ public class DiscountCodeController {
         return ResponseEntity.ok(service.updateDiscountCode(id, code));
     }
 
-    @GetMapping("/influencer/{id}")
-    public ResponseEntity<List<DiscountCode>> getCodesForInfluencer(
-            @PathVariable Long id) {
-        return ResponseEntity.ok(service.getCodesForInfluencer(id));
+    // ✅ GET all discount codes for an influencer
+    @GetMapping("/influencer/{influencerId}")
+    public ResponseEntity<List<DiscountCode>> getCodesByInfluencer(
+            @PathVariable Long influencerId) {
+        return ResponseEntity.ok(service.getCodesForInfluencer(influencerId));
     }
 
-    @GetMapping("/campaign/{id}")
-    public ResponseEntity<List<DiscountCode>> getCodesForCampaign(
-            @PathVariable Long id) {
-        return ResponseEntity.ok(service.getCodesForCampaign(id));
+    // ✅ GET all discount codes for a campaign
+    @GetMapping("/campaign/{campaignId}")
+    public ResponseEntity<List<DiscountCode>> getCodesByCampaign(
+            @PathVariable Long campaignId) {
+        return ResponseEntity.ok(service.getCodesForCampaign(campaignId));
     }
-
-   @PostMapping
-public ResponseEntity<DiscountCode> createDiscountCode(
-        @RequestBody DiscountCode code) {
-    return ResponseEntity.ok(service.createDiscountCode(code));
-}
-
 }

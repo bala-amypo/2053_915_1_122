@@ -30,7 +30,6 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
     @Override
     public DiscountCode createDiscountCode(DiscountCode code) {
 
-        // ✅ Fetch Influencer fully
         if (code.getInfluencer() != null && code.getInfluencer().getId() != null) {
             Influencer influencer = influencerRepository
                     .findById(code.getInfluencer().getId())
@@ -38,7 +37,6 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
             code.setInfluencer(influencer);
         }
 
-        // ✅ Fetch Campaign fully
         if (code.getCampaign() != null && code.getCampaign().getId() != null) {
             Campaign campaign = campaignRepository
                     .findById(code.getCampaign().getId())
@@ -61,12 +59,12 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
     }
 
     @Override
-    public List<DiscountCode> getCodesForInfluencer(Long id) {
-        return discountCodeRepository.findByInfluencerId(id);
+    public List<DiscountCode> getCodesForInfluencer(Long influencerId) {
+        return discountCodeRepository.findByInfluencerId(influencerId);
     }
 
     @Override
-    public List<DiscountCode> getCodesForCampaign(Long id) {
-        return discountCodeRepository.findByCampaignId(id);
+    public List<DiscountCode> getCodesForCampaign(Long campaignId) {
+        return discountCodeRepository.findByCampaignId(campaignId);
     }
 }
