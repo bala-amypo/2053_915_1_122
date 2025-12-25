@@ -1,19 +1,13 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.model.Campaign;
-import com.example.demo.model.DiscountCode;
-import com.example.demo.model.Influencer;
-import com.example.demo.repository.CampaignRepository;
-import com.example.demo.repository.DiscountCodeRepository;
-import com.example.demo.repository.InfluencerRepository;
+import com.example.demo.model.*;
+import com.example.demo.repository.*;
 import com.example.demo.service.DiscountCodeService;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@Transactional
 public class DiscountCodeServiceImpl implements DiscountCodeService {
 
     private final DiscountCodeRepository discountCodeRepository;
@@ -32,38 +26,25 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
     @Override
     public DiscountCode createDiscountCode(DiscountCode code) {
 
-        // 🔒 FORCE INSERT (prevents Swagger 500)
-        code.setId(null);
+        Long influencerId = code.getInfluencer().getId();
+        Long campaignId = code.getCampaign().getId();
 
-        if (code.getInfluencer() != null && code.getInfluencer().getId() != null) {
-            Influencer influencer = influencerRepository
-                    .findById(code.getInfluencer().getId())
-                    .orElseThrow(() -> new RuntimeException("Influencer not found"));
-            code.setInfluencer(influencer);
-        }
+        Influencer influencer = influencerRepository.findById(influencerId)
+                .orElseThrow(() -> new RuntimeException("Influencer not found"));
 
-        if (code.getCampaign() != null && code.getCampaign().getId() != null) {
-            Campaign campaign = campaignRepository
-                    .findById(code.getCampaign().getId())
-                    .orElseThrow(() -> new RuntimeException("Campaign not found"));
-            code.setCampaign(campaign);
-        }
+        Campaign campaign = campaignRepository.findById(campaignId)
+                .orElseThrow(() -> new RuntimeException("Campaign not found"));
+
+        code.setInfluencer(influencer);
+        code.setCampaign(campaign);
 
         return discountCodeRepository.save(code);
     }
 
     @Override
-    public DiscountCode getDiscountCodeById(Long id) {
+    public DiscountCode getDiscountCode(Long id) {
         return discountCodeRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("DiscountCode not found"));
-    }
-
-    @Override
-    public DiscountCode updateDiscountCode(Long id, DiscountCode code) {
-        DiscountCode existing = getDiscountCodeById(id);
-        existing.setCodeValue(code.getCodeValue());
-        existing.setDiscountPercentage(code.getDiscountPercentage());
-        return discountCodeRepository.save(existing);
     }
 
     @Override

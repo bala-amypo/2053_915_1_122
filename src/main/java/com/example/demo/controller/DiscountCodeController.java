@@ -23,19 +23,20 @@ public class DiscountCodeController {
         return ResponseEntity.ok(service.createDiscountCode(code));
     }
 
-    // REQUIRED BY TEST CASES
     @GetMapping("/{id}")
-    public ResponseEntity<DiscountCode> getDiscountCode(@PathVariable long id) {
-        return ResponseEntity.ok(service.getDiscountCodeById(id));
+    public ResponseEntity<DiscountCode> getDiscountCode(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getDiscountCode(id));
     }
 
     @GetMapping("/influencer/{id}")
-    public ResponseEntity<List<DiscountCode>> getCodesForInfluencer(@PathVariable long id) {
+    public ResponseEntity<List<DiscountCode>> getCodesForInfluencer(
+            @PathVariable Long id) {
         return ResponseEntity.ok(service.getCodesForInfluencer(id));
     }
 
     @GetMapping("/campaign/{id}")
-    public ResponseEntity<List<DiscountCode>> getCodesForCampaign(@PathVariable long id) {
+    public ResponseEntity<List<DiscountCode>> getCodesForCampaign(
+            @PathVariable Long id) {
         return ResponseEntity.ok(service.getCodesForCampaign(id));
     }
 }
