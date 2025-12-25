@@ -41,10 +41,10 @@ public class DiscountCodeController {
         return ResponseEntity.ok(service.getCodesForCampaign(id));
     }
 
-    // ✅ SAFE POST
-    @PostMapping
-    public ResponseEntity<DiscountCode> createDiscountCode(
-            @RequestBody DiscountCode code) {
-        return ResponseEntity.ok(code);
-    }
+   @PostMapping
+public ResponseEntity<DiscountCode> createDiscountCode(
+        @RequestBody DiscountCode code) {
+    return ResponseEntity.ok(service.createDiscountCode(code));
+}
+
 }
