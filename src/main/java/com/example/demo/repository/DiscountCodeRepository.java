@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface DiscountCodeRepository extends JpaRepository<DiscountCode, Long> {
 
-    // ✅ REQUIRED BY SERVICE
     List<DiscountCode> findByInfluencerId(Long influencerId);
 
     List<DiscountCode> findByCampaignId(Long campaignId);

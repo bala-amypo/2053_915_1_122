@@ -27,6 +27,7 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
         this.campaignRepository = campaignRepository;
     }
 
+    // ✅ FIXED POST LOGIC
     @Override
     public DiscountCode createDiscountCode(DiscountCode code) {
 
@@ -48,23 +49,26 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
     }
 
     @Override
-    public DiscountCode getDiscountCodeById(Long id) {
-        return discountCodeRepository.findById(id).orElse(null);
+    public DiscountCode getDiscountCodeById(long id) {
+        return discountCodeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("DiscountCode not found"));
     }
 
     @Override
-    public DiscountCode updateDiscountCode(Long id, DiscountCode code) {
-        code.setId(id);
-        return discountCodeRepository.save(code);
+    public DiscountCode updateDiscountCode(long id, DiscountCode code) {
+        DiscountCode existing = getDiscountCodeById(id);
+        existing.setCodeValue(code.getCodeValue());
+        existing.setDiscountPercentage(code.getDiscountPercentage());
+        return discountCodeRepository.save(existing);
     }
 
     @Override
-    public List<DiscountCode> getCodesForInfluencer(Long influencerId) {
+    public List<DiscountCode> getCodesForInfluencer(long influencerId) {
         return discountCodeRepository.findByInfluencerId(influencerId);
     }
 
     @Override
-    public List<DiscountCode> getCodesForCampaign(Long campaignId) {
+    public List<DiscountCode> getCodesForCampaign(long campaignId) {
         return discountCodeRepository.findByCampaignId(campaignId);
     }
 }
