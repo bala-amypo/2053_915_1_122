@@ -12,6 +12,7 @@ public class RoiReport {
 
     private BigDecimal totalSales;
     private int totalTransactions;
+    private double roiPercentage;
 
     @ManyToOne
     private Influencer influencer;
@@ -19,10 +20,18 @@ public class RoiReport {
     @ManyToOne
     private DiscountCode discountCode;
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public BigDecimal getTotalSales() { return totalSales; }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public BigDecimal getTotalSales() {
+        return totalSales;
+    }
+
     public void setTotalSales(BigDecimal totalSales) {
         this.totalSales = totalSales;
     }
@@ -30,16 +39,31 @@ public class RoiReport {
     public int getTotalTransactions() {
         return totalTransactions;
     }
+
     public void setTotalTransactions(int totalTransactions) {
         this.totalTransactions = totalTransactions;
     }
 
-    public Influencer getInfluencer() { return influencer; }
+    public double getRoiPercentage() {
+        return roiPercentage;
+    }
+
+    public void setRoiPercentage(double roiPercentage) {
+        this.roiPercentage = roiPercentage;
+    }
+
+    public Influencer getInfluencer() {
+        return influencer;
+    }
+
     public void setInfluencer(Influencer influencer) {
         this.influencer = influencer;
     }
 
-    public DiscountCode getDiscountCode() { return discountCode; }
+    public DiscountCode getDiscountCode() {
+        return discountCode;
+    }
+
     public void setDiscountCode(DiscountCode discountCode) {
         this.discountCode = discountCode;
     }
