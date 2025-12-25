@@ -1,8 +1,14 @@
 package com.example.demo.model;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Influencer {
 
+    @Id
+    @GeneratedValue
     private Long id;
+
     private String name;
     private String socialHandle;
     private String email;

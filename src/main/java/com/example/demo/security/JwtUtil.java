@@ -1,27 +1,24 @@
 package com.example.demo.security;
 
-import org.springframework.stereotype.Component;
-
-@Component   // ⭐ THIS IS THE FIX
 public class JwtUtil {
 
     public String generateToken(String email, String role, Long userId) {
-        return "token";
+        return "";
     }
 
     public boolean validateToken(String token) {
-        return true;
+        return false;
     }
 
     public String extractEmail(String token) {
-        return "email";
+        return "";
     }
 
     public String extractRole(String token) {
-        return "role";
+        return "";
     }
 
     public Long extractUserId(String token) {
-        return 1L;
+        return 0L;
     }
 }
