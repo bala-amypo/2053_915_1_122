@@ -1,8 +1,9 @@
-package com.example.demo.model;
+package com.example.demo.entity;
 
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "discount_code")
 public class DiscountCode {
 
     @Id
@@ -10,18 +11,24 @@ public class DiscountCode {
     private Long id;
 
     private String codeValue;
+
     private Double discountPercentage;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "influencer_id")
     private Influencer influencer;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "campaign_id")
     private Campaign campaign;
 
+    // getters and setters
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCodeValue() {
