@@ -3,30 +3,31 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "discount_code")
 public class DiscountCode {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "code_value", nullable = false)
     private String codeValue;
 
+    @Column(name = "discount_percentage", nullable = false)
     private Double discountPercentage;
 
     @ManyToOne
-    @JoinColumn(name = "influencer_id")
+    @JoinColumn(name = "influencer_id", nullable = false)
     private Influencer influencer;
 
     @ManyToOne
-    @JoinColumn(name = "campaign_id")
+    @JoinColumn(name = "campaign_id", nullable = false)
     private Campaign campaign;
+
+    // ===== Getters & Setters =====
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getCodeValue() {

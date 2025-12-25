@@ -3,6 +3,7 @@ package com.example.demo.service.impl;
 import com.example.demo.model.*;
 import com.example.demo.repository.*;
 import com.example.demo.service.DiscountCodeService;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,16 +25,24 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
     }
 
     @Override
+    @Transactional
     public DiscountCode createDiscountCode(DiscountCode code) {
 
-        Long influencerId = code.getInfluencer().getId();
-        Long campaignId = code.getCampaign().getId();
+        if (code.getInfluencer() == null || code.getInfluencer().getId() == null) {
+            throw new RuntimeException("Influencer ID is required");
+        }
 
-        Influencer influencer = influencerRepository.findById(influencerId)
-                .orElseThrow(() -> new RuntimeException("Influencer not found"));
+        if (code.getCampaign() == null || code.getCampaign().getId() == null) {
+            throw new RuntimeException("Campaign ID is required");
+        }
 
-        Campaign campaign = campaignRepository.findById(campaignId)
-                .orElseThrow(() -> new RuntimeException("Campaign not found"));
+        Influencer influencer = influencerRepository.findById(
+                code.getInfluencer().getId()
+        ).orElseThrow(() -> new RuntimeException("Influencer not found"));
+
+        Campaign campaign = campaignRepository.findById(
+                code.getCampaign().getId()
+        ).orElseThrow(() -> new RuntimeException("Campaign not found"));
 
         code.setInfluencer(influencer);
         code.setCampaign(campaign);
