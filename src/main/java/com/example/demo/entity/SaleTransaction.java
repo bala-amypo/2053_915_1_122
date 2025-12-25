@@ -2,7 +2,7 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 @Entity
 public class SaleTransaction {
@@ -11,9 +11,10 @@ public class SaleTransaction {
     @GeneratedValue
     private Long id;
 
-    private BigDecimal amount;
+    private BigDecimal transactionAmount;
+    private long customerId;
 
-    private LocalDateTime transactionDate;
+    private Timestamp transactionDate;
 
     @ManyToOne
     private DiscountCode discountCode;
@@ -21,13 +22,20 @@ public class SaleTransaction {
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public BigDecimal getAmount() { return amount; }
-    public void setAmount(BigDecimal amount) { this.amount = amount; }
-
-    public LocalDateTime getTransactionDate() {
-        return transactionDate;
+    public BigDecimal getTransactionAmount() {
+        return transactionAmount;
     }
-    public void setTransactionDate(LocalDateTime transactionDate) {
+    public void setTransactionAmount(BigDecimal transactionAmount) {
+        this.transactionAmount = transactionAmount;
+    }
+
+    public long getCustomerId() { return customerId; }
+    public void setCustomerId(long customerId) {
+        this.customerId = customerId;
+    }
+
+    public Timestamp getTransactionDate() { return transactionDate; }
+    public void setTransactionDate(Timestamp transactionDate) {
         this.transactionDate = transactionDate;
     }
 

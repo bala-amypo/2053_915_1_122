@@ -9,7 +9,7 @@ public class DiscountCode {
     @GeneratedValue
     private Long id;
 
-    private String code;
+    private String codeValue;
     private Double discountPercentage;
 
     @ManyToOne
@@ -21,8 +21,10 @@ public class DiscountCode {
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    public String getCode() { return code; }
-    public void setCode(String code) { this.code = code; }
+    public String getCodeValue() { return codeValue; }
+    public void setCodeValue(String codeValue) {
+        this.codeValue = codeValue;
+    }
 
     public Double getDiscountPercentage() { return discountPercentage; }
     public void setDiscountPercentage(Double discountPercentage) {
