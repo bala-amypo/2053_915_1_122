@@ -17,26 +17,30 @@ public class DiscountCodeController {
         this.service = service;
     }
 
+    // ✅ CREATE
     @PostMapping
     public ResponseEntity<DiscountCode> createDiscountCode(
             @RequestBody DiscountCode code) {
         return ResponseEntity.ok(service.createDiscountCode(code));
     }
 
+    // ✅ GET BY ID (required by tests)
     @GetMapping("/{id}")
-    public ResponseEntity<DiscountCode> getDiscountCode(@PathVariable Long id) {
+    public ResponseEntity<DiscountCode> getDiscountCode(@PathVariable long id) {
         return ResponseEntity.ok(service.getDiscountCode(id));
     }
 
-    @GetMapping("/influencer/{id}")
+    // ✅ GET BY INFLUENCER (required by tests)
+    @GetMapping("/influencer/{influencerId}")
     public ResponseEntity<List<DiscountCode>> getCodesForInfluencer(
-            @PathVariable Long id) {
-        return ResponseEntity.ok(service.getCodesForInfluencer(id));
+            @PathVariable long influencerId) {
+        return ResponseEntity.ok(service.getCodesForInfluencer(influencerId));
     }
 
-    @GetMapping("/campaign/{id}")
+    // ✅ GET BY CAMPAIGN (required by tests)
+    @GetMapping("/campaign/{campaignId}")
     public ResponseEntity<List<DiscountCode>> getCodesForCampaign(
-            @PathVariable Long id) {
-        return ResponseEntity.ok(service.getCodesForCampaign(id));
+            @PathVariable long campaignId) {
+        return ResponseEntity.ok(service.getCodesForCampaign(campaignId));
     }
 }
