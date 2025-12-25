@@ -1,6 +1,6 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.entity.*;
+import com.example.demo.model.*;
 import com.example.demo.repository.*;
 import com.example.demo.service.DiscountCodeService;
 import org.springframework.stereotype.Service;
@@ -51,10 +51,8 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
     @Override
     public DiscountCode updateDiscountCode(Long id, DiscountCode code) {
         DiscountCode existing = getDiscountCodeById(id);
-
         existing.setCodeValue(code.getCodeValue());
         existing.setDiscountPercentage(code.getDiscountPercentage());
-
         return discountCodeRepository.save(existing);
     }
 
