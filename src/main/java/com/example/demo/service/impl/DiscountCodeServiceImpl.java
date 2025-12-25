@@ -1,3 +1,18 @@
+package com.example.demo.service.impl;
+
+import com.example.demo.entity.Campaign;
+import com.example.demo.entity.DiscountCode;
+import com.example.demo.entity.Influencer;
+import com.example.demo.repository.CampaignRepository;
+import com.example.demo.repository.DiscountCodeRepository;
+import com.example.demo.repository.InfluencerRepository;
+import com.example.demo.service.DiscountCodeService;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
 @Service
 @Transactional
 public class DiscountCodeServiceImpl implements DiscountCodeService {
@@ -18,14 +33,6 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
     @Override
     public DiscountCode createDiscountCode(DiscountCode code) {
 
-        if (code.getInfluencer() == null || code.getInfluencer().getId() == null) {
-            throw new RuntimeException("Influencer ID required");
-        }
-
-        if (code.getCampaign() == null || code.getCampaign().getId() == null) {
-            throw new RuntimeException("Campaign ID required");
-        }
-
         Influencer influencer = influencerRepository.findById(
                 code.getInfluencer().getId()
         ).orElseThrow(() -> new RuntimeException("Influencer not found"));
@@ -34,7 +41,6 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
                 code.getCampaign().getId()
         ).orElseThrow(() -> new RuntimeException("Campaign not found"));
 
-        // 🔥 Attach managed entities
         code.setInfluencer(influencer);
         code.setCampaign(campaign);
 
