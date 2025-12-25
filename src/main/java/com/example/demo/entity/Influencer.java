@@ -1,7 +1,6 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-
 import java.sql.Timestamp;
 
 @Entity
@@ -36,6 +35,7 @@ public class Influencer {
         }
     }
 
+    // ===== Getters & Setters =====
 
     public Long getId() {
         return id;
@@ -53,7 +53,6 @@ public class Influencer {
         this.name = name;
     }
 
-    // 🔴 REQUIRED by InfluencerServiceImpl
     public String getSocialHandle() {
         return socialHandle;
     }
@@ -62,7 +61,6 @@ public class Influencer {
         this.socialHandle = socialHandle;
     }
 
-    // 🔴 REQUIRED by InfluencerServiceImpl
     public String getEmail() {
         return email;
     }
@@ -81,5 +79,9 @@ public class Influencer {
 
     public Timestamp getCreatedAt() {
         return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
     }
 }
