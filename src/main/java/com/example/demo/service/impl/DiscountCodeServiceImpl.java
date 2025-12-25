@@ -3,12 +3,13 @@ package com.example.demo.service.impl;
 import com.example.demo.model.*;
 import com.example.demo.repository.*;
 import com.example.demo.service.DiscountCodeService;
-import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class DiscountCodeServiceImpl implements DiscountCodeService {
 
     private final DiscountCodeRepository discountCodeRepository;
@@ -24,26 +25,20 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
         this.campaignRepository = campaignRepository;
     }
 
+    // ✅ FIXED CREATE
     @Override
-    @Transactional
     public DiscountCode createDiscountCode(DiscountCode code) {
 
-        if (code.getInfluencer() == null || code.getInfluencer().getId() == null) {
-            throw new RuntimeException("Influencer ID is required");
-        }
+        Long influencerId = code.getInfluencer().getId();
+        Long campaignId = code.getCampaign().getId();
 
-        if (code.getCampaign() == null || code.getCampaign().getId() == null) {
-            throw new RuntimeException("Campaign ID is required");
-        }
+        Influencer influencer = influencerRepository.findById(influencerId)
+                .orElseThrow(() -> new RuntimeException("Influencer not found"));
 
-        Influencer influencer = influencerRepository.findById(
-                code.getInfluencer().getId()
-        ).orElseThrow(() -> new RuntimeException("Influencer not found"));
+        Campaign campaign = campaignRepository.findById(campaignId)
+                .orElseThrow(() -> new RuntimeException("Campaign not found"));
 
-        Campaign campaign = campaignRepository.findById(
-                code.getCampaign().getId()
-        ).orElseThrow(() -> new RuntimeException("Campaign not found"));
-
+        // 🔥 ATTACH MANAGED ENTITIES
         code.setInfluencer(influencer);
         code.setCampaign(campaign);
 

@@ -3,28 +3,22 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "discount_code")
 public class DiscountCode {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "code_value", nullable = false)
     private String codeValue;
-
-    @Column(name = "discount_percentage", nullable = false)
     private Double discountPercentage;
 
-    @ManyToOne
-    @JoinColumn(name = "influencer_id", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "influencer_id")
     private Influencer influencer;
 
-    @ManyToOne
-    @JoinColumn(name = "campaign_id", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "campaign_id")
     private Campaign campaign;
-
-    // ===== Getters & Setters =====
 
     public Long getId() {
         return id;
