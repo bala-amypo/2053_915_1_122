@@ -7,7 +7,11 @@ public interface DiscountCodeService {
 
     DiscountCode createDiscountCode(DiscountCode code);
 
-    DiscountCode getDiscountCode(Long id);
+    // 🔥 REQUIRED BY TEST CASES
+    DiscountCode getDiscountCodeById(Long id);
+
+    // 🔥 REQUIRED BY TEST CASES
+    DiscountCode updateDiscountCode(Long id, DiscountCode code);
 
     List<DiscountCode> getCodesForInfluencer(Long influencerId);
 
