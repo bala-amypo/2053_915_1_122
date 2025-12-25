@@ -17,46 +17,25 @@ public class DiscountCodeController {
         this.service = service;
     }
 
-    // =========================
-    // CREATE
-    // =========================
     @PostMapping
     public ResponseEntity<DiscountCode> createDiscountCode(
             @RequestBody DiscountCode code) {
         return ResponseEntity.ok(service.createDiscountCode(code));
     }
 
-    // =========================
     // REQUIRED BY TEST CASES
-    // =========================
-
-    // 🔹 TEST CALLS: getDiscountCode(long)
     @GetMapping("/{id}")
     public ResponseEntity<DiscountCode> getDiscountCode(@PathVariable long id) {
         return ResponseEntity.ok(service.getDiscountCodeById(id));
     }
 
-    // 🔹 TEST CALLS: getCodesForInfluencer(long)
-    @GetMapping("/influencer/{influencerId}")
-    public ResponseEntity<List<DiscountCode>> getCodesForInfluencer(
-            @PathVariable long influencerId) {
-        return ResponseEntity.ok(service.getCodesForInfluencer(influencerId));
+    @GetMapping("/influencer/{id}")
+    public ResponseEntity<List<DiscountCode>> getCodesForInfluencer(@PathVariable long id) {
+        return ResponseEntity.ok(service.getCodesForInfluencer(id));
     }
 
-    // 🔹 TEST CALLS: getCodesForCampaign(long)
-    @GetMapping("/campaign/{campaignId}")
-    public ResponseEntity<List<DiscountCode>> getCodesForCampaign(
-            @PathVariable long campaignId) {
-        return ResponseEntity.ok(service.getCodesForCampaign(campaignId));
-    }
-
-    // =========================
-    // UPDATE (OPTIONAL BUT SAFE)
-    // =========================
-    @PutMapping("/{id}")
-    public ResponseEntity<DiscountCode> updateDiscountCode(
-            @PathVariable long id,
-            @RequestBody DiscountCode code) {
-        return ResponseEntity.ok(service.updateDiscountCode(id, code));
+    @GetMapping("/campaign/{id}")
+    public ResponseEntity<List<DiscountCode>> getCodesForCampaign(@PathVariable long id) {
+        return ResponseEntity.ok(service.getCodesForCampaign(id));
     }
 }

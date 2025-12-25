@@ -8,10 +8,12 @@ import com.example.demo.repository.DiscountCodeRepository;
 import com.example.demo.repository.InfluencerRepository;
 import com.example.demo.service.DiscountCodeService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class DiscountCodeServiceImpl implements DiscountCodeService {
 
     private final DiscountCodeRepository discountCodeRepository;
@@ -29,6 +31,9 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
 
     @Override
     public DiscountCode createDiscountCode(DiscountCode code) {
+
+        // 🔒 FORCE INSERT (prevents Swagger 500)
+        code.setId(null);
 
         if (code.getInfluencer() != null && code.getInfluencer().getId() != null) {
             Influencer influencer = influencerRepository
