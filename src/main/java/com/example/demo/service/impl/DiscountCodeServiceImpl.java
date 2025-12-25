@@ -1,13 +1,3 @@
-package com.example.demo.service.impl;
-
-import com.example.demo.model.*;
-import com.example.demo.repository.*;
-import com.example.demo.service.DiscountCodeService;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-
 @Service
 @Transactional
 public class DiscountCodeServiceImpl implements DiscountCodeService {
@@ -25,20 +15,26 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
         this.campaignRepository = campaignRepository;
     }
 
-    // ✅ FIXED CREATE
     @Override
     public DiscountCode createDiscountCode(DiscountCode code) {
 
-        Long influencerId = code.getInfluencer().getId();
-        Long campaignId = code.getCampaign().getId();
+        if (code.getInfluencer() == null || code.getInfluencer().getId() == null) {
+            throw new RuntimeException("Influencer ID required");
+        }
 
-        Influencer influencer = influencerRepository.findById(influencerId)
-                .orElseThrow(() -> new RuntimeException("Influencer not found"));
+        if (code.getCampaign() == null || code.getCampaign().getId() == null) {
+            throw new RuntimeException("Campaign ID required");
+        }
 
-        Campaign campaign = campaignRepository.findById(campaignId)
-                .orElseThrow(() -> new RuntimeException("Campaign not found"));
+        Influencer influencer = influencerRepository.findById(
+                code.getInfluencer().getId()
+        ).orElseThrow(() -> new RuntimeException("Influencer not found"));
 
-        // 🔥 ATTACH MANAGED ENTITIES
+        Campaign campaign = campaignRepository.findById(
+                code.getCampaign().getId()
+        ).orElseThrow(() -> new RuntimeException("Campaign not found"));
+
+        // 🔥 Attach managed entities
         code.setInfluencer(influencer);
         code.setCampaign(campaign);
 

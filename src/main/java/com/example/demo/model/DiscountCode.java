@@ -20,6 +20,10 @@ public class DiscountCode {
     @JoinColumn(name = "campaign_id")
     private Campaign campaign;
 
+    // getters & setters
+}
+
+
     public Long getId() {
         return id;
     }
