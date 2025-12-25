@@ -1,3 +1,12 @@
+package com.example.demo.controller;
+
+import com.example.demo.model.DiscountCode;
+import com.example.demo.service.DiscountCodeService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/discount-codes")
 public class DiscountCodeController {
@@ -8,7 +17,6 @@ public class DiscountCodeController {
         this.service = service;
     }
 
-    // ✅ EXISTING METHODS (DO NOT CHANGE)
     @GetMapping("/{id}")
     public ResponseEntity<DiscountCode> getDiscountCode(@PathVariable Long id) {
         return ResponseEntity.ok(service.getDiscountCodeById(id));
@@ -33,7 +41,7 @@ public class DiscountCodeController {
         return ResponseEntity.ok(service.getCodesForCampaign(id));
     }
 
-    // ✅ NEW POST OPERATION (SAFE)
+    // ✅ SAFE POST
     @PostMapping
     public ResponseEntity<DiscountCode> createDiscountCode(
             @RequestBody DiscountCode code) {
