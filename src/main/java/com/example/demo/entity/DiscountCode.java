@@ -1,88 +1,27 @@
-package com.example.demo.entity;
+package com.example.demo.model;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(
-    name = "discount_codes",
-    uniqueConstraints = {
-        @UniqueConstraint(columnNames = "code")
-    }
-)
 public class DiscountCode {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false, unique = true)
-    private String code;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "influencer_id")
+    private String codeValue;
+    private Double discountPercentage;
     private Influencer influencer;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "campaign_id")
     private Campaign campaign;
 
-    private Double discountPercentage;
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    private Boolean active;
+    public String getCodeValue() { return codeValue; }
+    public void setCodeValue(String codeValue) { this.codeValue = codeValue; }
 
-    @PrePersist
-    protected void onCreate() {
-        if (this.active == null) {
-            this.active = true;
-        }
-    }
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public Influencer getInfluencer() {
-        return influencer;
-    }
-
-    public void setInfluencer(Influencer influencer) {
-        this.influencer = influencer;
-    }
-
-    public Campaign getCampaign() {
-        return campaign;
-    }
-
-    public void setCampaign(Campaign campaign) {
-        this.campaign = campaign;
-    }
-
-    public Double getDiscountPercentage() {
-        return discountPercentage;
-    }
-
+    public Double getDiscountPercentage() { return discountPercentage; }
     public void setDiscountPercentage(Double discountPercentage) {
         this.discountPercentage = discountPercentage;
     }
 
-    public Boolean getActive() {
-        return active;
-    }
+    public Influencer getInfluencer() { return influencer; }
+    public void setInfluencer(Influencer influencer) { this.influencer = influencer; }
 
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
+    public Campaign getCampaign() { return campaign; }
+    public void setCampaign(Campaign campaign) { this.campaign = campaign; }
 }
