@@ -17,6 +17,13 @@ public class CampaignController {
         this.campaignService = campaignService;
     }
 
+    // ✅ FIXED: now SAVES to DB
+    @PostMapping
+    public ResponseEntity<Campaign> createCampaign(
+            @RequestBody Campaign campaign) {
+        return ResponseEntity.ok(campaignService.createCampaign(campaign));
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Campaign> updateCampaign(
             @PathVariable Long id,
@@ -32,12 +39,5 @@ public class CampaignController {
     @GetMapping
     public ResponseEntity<List<Campaign>> getAllCampaigns() {
         return ResponseEntity.ok(campaignService.getAllCampaigns());
-    }
-
-    // ✅ SAFE POST (does NOT break tests)
-    @PostMapping
-    public ResponseEntity<Campaign> createCampaign(
-            @RequestBody Campaign campaign) {
-        return ResponseEntity.ok(campaign);
     }
 }

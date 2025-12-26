@@ -16,15 +16,28 @@ public class CampaignServiceImpl implements CampaignService {
         this.repo = repo;
     }
 
+    // ✅ THIS IS THE MISSING PIECE
     @Override
-    public Campaign updateCampaign(Long id, Campaign campaign) {
-        campaign.setId(id);
+    public Campaign createCampaign(Campaign campaign) {
         return repo.save(campaign);
     }
 
     @Override
+    public Campaign updateCampaign(Long id, Campaign campaign) {
+        Campaign existing = repo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Campaign not found"));
+        existing.setCampaignName(campaign.getCampaignName());
+        existing.setBudget(campaign.getBudget());
+        existing.setActive(campaign.isActive());
+        existing.setStartDate(campaign.getStartDate());
+        existing.setEndDate(campaign.getEndDate());
+        return repo.save(existing);
+    }
+
+    @Override
     public Campaign getCampaignById(Long id) {
-        return repo.findById(id).orElseThrow();
+        return repo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Campaign not found"));
     }
 
     @Override
