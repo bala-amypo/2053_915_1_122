@@ -17,7 +17,6 @@ public class CampaignController {
         this.campaignService = campaignService;
     }
 
-    // ✅ FIXED: now SAVES to DB
     @PostMapping
     public ResponseEntity<Campaign> createCampaign(
             @RequestBody Campaign campaign) {
