@@ -2,7 +2,7 @@ package com.example.demo.security;
 
 import org.springframework.stereotype.Component;
 
-@Component   // 👈 THIS IS REQUIRED
+@Component   
 public class JwtUtil {
 
     public String generateToken(String email, String role, Long userId) {
