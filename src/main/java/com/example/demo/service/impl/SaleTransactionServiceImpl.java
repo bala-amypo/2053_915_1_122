@@ -1,38 +1,38 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.model.DiscountCode;
 import com.example.demo.model.SaleTransaction;
+import com.example.demo.repository.DiscountCodeRepository;
 import com.example.demo.repository.SaleTransactionRepository;
 import com.example.demo.service.SaleTransactionService;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class SaleTransactionServiceImpl implements SaleTransactionService {
 
-    private final SaleTransactionRepository repo;
+    private final SaleTransactionRepository saleRepo;
+    private final DiscountCodeRepository discountRepo;
 
-    public SaleTransactionServiceImpl(SaleTransactionRepository repo) {
-        this.repo = repo;
+    public SaleTransactionServiceImpl(
+            SaleTransactionRepository saleRepo,
+            DiscountCodeRepository discountRepo) {
+        this.saleRepo = saleRepo;
+        this.discountRepo = discountRepo;
     }
 
     @Override
     public SaleTransaction createSale(SaleTransaction tx) {
-        return repo.save(tx);
-    }
 
-    @Override
-    public List<SaleTransaction> getSalesForCode(Long codeId) {
-        return repo.findAll();
-    }
+        if (tx.getDiscountCode() != null && tx.getDiscountCode().getId() != null) {
 
-    @Override
-    public List<SaleTransaction> getSalesForInfluencer(Long influencerId) {
-        return repo.findAll();
-    }
+            DiscountCode code = discountRepo.findById(
+                    tx.getDiscountCode().getId()
+            ).orElseThrow(() -> new RuntimeException("DiscountCode not found"));
 
-    @Override
-    public List<SaleTransaction> getSalesForCampaign(Long campaignId) {
-        return repo.findAll();
+            // ✅ Attach FULL entity
+            tx.setDiscountCode(code);
+        }
+
+        return saleRepo.save(tx);
     }
 }
