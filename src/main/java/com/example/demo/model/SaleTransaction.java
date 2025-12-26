@@ -2,7 +2,7 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "sale_transaction")
@@ -16,7 +16,7 @@ public class SaleTransaction {
 
     private long customerId;
 
-    private LocalDateTime transactionDate;
+    private Timestamp transactionDate;
 
     @ManyToOne
     @JoinColumn(name = "discount_code_id")
@@ -46,11 +46,11 @@ public class SaleTransaction {
         this.customerId = customerId;
     }
 
-    public LocalDateTime getTransactionDate() {
+    public Timestamp getTransactionDate() {
         return transactionDate;
     }
 
-    public void setTransactionDate(LocalDateTime transactionDate) {
+    public void setTransactionDate(Timestamp transactionDate) {
         this.transactionDate = transactionDate;
     }
 

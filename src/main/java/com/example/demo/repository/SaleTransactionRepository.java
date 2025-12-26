@@ -8,4 +8,8 @@ import java.util.List;
 public interface SaleTransactionRepository extends JpaRepository<SaleTransaction, Long> {
 
     List<SaleTransaction> findByDiscountCodeId(Long discountCodeId);
+
+    List<SaleTransaction> findByDiscountCodeInfluencerId(Long influencerId);
+
+    List<SaleTransaction> findByDiscountCodeCampaignId(Long campaignId);
 }

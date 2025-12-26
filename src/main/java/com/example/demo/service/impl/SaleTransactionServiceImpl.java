@@ -25,30 +25,35 @@ public class SaleTransactionServiceImpl implements SaleTransactionService {
     }
 
     @Override
-    public SaleTransaction createSaleTransaction(SaleTransaction transaction) {
+    public SaleTransaction createSale(Object transaction) {
 
-        if (transaction.getDiscountCode() == null ||
-            transaction.getDiscountCode().getId() == null) {
-            throw new RuntimeException("Discount code is required");
+        SaleTransaction sale = (SaleTransaction) transaction;
+
+        if (sale.getDiscountCode() == null || sale.getDiscountCode().getId() == null) {
+            throw new RuntimeException("DiscountCode is required");
         }
 
         DiscountCode code = discountRepo.findById(
-                transaction.getDiscountCode().getId()
+                sale.getDiscountCode().getId()
         ).orElseThrow(() -> new RuntimeException("DiscountCode not found"));
 
-        transaction.setDiscountCode(code);
+        sale.setDiscountCode(code);
 
-        return saleRepo.save(transaction);
+        return saleRepo.save(sale);
     }
 
     @Override
-    public SaleTransaction getSaleTransactionById(Long id) {
-        return saleRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("SaleTransaction not found"));
-    }
-
-    @Override
-    public List<SaleTransaction> getSalesByDiscountCode(Long discountCodeId) {
+    public List<SaleTransaction> getSalesForCode(long discountCodeId) {
         return saleRepo.findByDiscountCodeId(discountCodeId);
+    }
+
+    @Override
+    public List<SaleTransaction> getSalesForInfluencer(long influencerId) {
+        return saleRepo.findByDiscountCodeInfluencerId(influencerId);
+    }
+
+    @Override
+    public List<SaleTransaction> getSalesForCampaign(long campaignId) {
+        return saleRepo.findByDiscountCodeCampaignId(campaignId);
     }
 }
