@@ -20,7 +20,7 @@ public class SaleTransactionController {
     }
 
     @Operation(
-            summary = "Create a sale transaction",
+            summary = "Create sale transaction",
             requestBody = @RequestBody(
                     required = true,
                     content = @Content(
@@ -31,9 +31,9 @@ public class SaleTransactionController {
     )
     @PostMapping
     public ResponseEntity<SaleTransaction> createSale(
-            @org.springframework.web.bind.annotation.RequestBody Object transaction
+            @org.springframework.web.bind.annotation.RequestBody Object request
     ) {
-        return ResponseEntity.ok(service.createSale(transaction));
+        return ResponseEntity.ok(service.createSale(request));
     }
 
     @GetMapping("/discount/{codeId}")
