@@ -2,7 +2,7 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "sale_transaction")
@@ -13,16 +13,14 @@ public class SaleTransaction {
     private Long id;
 
     private BigDecimal transactionAmount;
+
     private long customerId;
 
-    // ✅ FIX: Timestamp (matches test BOTH ways)
-    private Timestamp transactionDate;
+    private LocalDateTime transactionDate;
 
     @ManyToOne
     @JoinColumn(name = "discount_code_id")
     private DiscountCode discountCode;
-
-    // ===== Getters & Setters =====
 
     public Long getId() {
         return id;
@@ -48,11 +46,11 @@ public class SaleTransaction {
         this.customerId = customerId;
     }
 
-    public Timestamp getTransactionDate() {
+    public LocalDateTime getTransactionDate() {
         return transactionDate;
     }
 
-    public void setTransactionDate(Timestamp transactionDate) {
+    public void setTransactionDate(LocalDateTime transactionDate) {
         this.transactionDate = transactionDate;
     }
 
