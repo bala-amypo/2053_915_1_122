@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "sale_transaction")
 public class SaleTransaction {
 
     @Id
@@ -13,34 +12,53 @@ public class SaleTransaction {
     private Long id;
 
     private BigDecimal transactionAmount;
+
     private long customerId;
 
+    // ✅ FIX: use LocalDateTime
     private LocalDateTime transactionDate;
 
     @ManyToOne
     private DiscountCode discountCode;
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    // ===== Getters & Setters =====
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public BigDecimal getTransactionAmount() {
         return transactionAmount;
     }
+
     public void setTransactionAmount(BigDecimal transactionAmount) {
         this.transactionAmount = transactionAmount;
     }
 
-    public long getCustomerId() { return customerId; }
+    public long getCustomerId() {
+        return customerId;
+    }
+
     public void setCustomerId(long customerId) {
         this.customerId = customerId;
     }
 
-    public LocalDateTime getTransactionDate() { return transactionDate; }
+    public LocalDateTime getTransactionDate() {
+        return transactionDate;
+    }
+
     public void setTransactionDate(LocalDateTime transactionDate) {
         this.transactionDate = transactionDate;
     }
 
-    public DiscountCode getDiscountCode() { return discountCode; }
+    public DiscountCode getDiscountCode() {
+        return discountCode;
+    }
+
     public void setDiscountCode(DiscountCode discountCode) {
         this.discountCode = discountCode;
     }
