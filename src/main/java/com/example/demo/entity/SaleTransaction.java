@@ -2,19 +2,20 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "sale_transaction")
 public class SaleTransaction {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private BigDecimal transactionAmount;
     private long customerId;
 
-    private Timestamp transactionDate;
+    private LocalDateTime transactionDate;
 
     @ManyToOne
     private DiscountCode discountCode;
@@ -34,8 +35,8 @@ public class SaleTransaction {
         this.customerId = customerId;
     }
 
-    public Timestamp getTransactionDate() { return transactionDate; }
-    public void setTransactionDate(Timestamp transactionDate) {
+    public LocalDateTime getTransactionDate() { return transactionDate; }
+    public void setTransactionDate(LocalDateTime transactionDate) {
         this.transactionDate = transactionDate;
     }
 

@@ -3,10 +3,11 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "influencer")
 public class Influencer {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -21,7 +22,9 @@ public class Influencer {
     public void setName(String name) { this.name = name; }
 
     public String getSocialHandle() { return socialHandle; }
-    public void setSocialHandle(String socialHandle) { this.socialHandle = socialHandle; }
+    public void setSocialHandle(String socialHandle) {
+        this.socialHandle = socialHandle;
+    }
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }

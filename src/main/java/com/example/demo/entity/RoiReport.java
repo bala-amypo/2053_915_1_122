@@ -4,10 +4,11 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+@Table(name = "roi_report")
 public class RoiReport {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private BigDecimal totalSales;
@@ -20,50 +21,30 @@ public class RoiReport {
     @ManyToOne
     private DiscountCode discountCode;
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public BigDecimal getTotalSales() {
-        return totalSales;
-    }
-
+    public BigDecimal getTotalSales() { return totalSales; }
     public void setTotalSales(BigDecimal totalSales) {
         this.totalSales = totalSales;
     }
 
-    public int getTotalTransactions() {
-        return totalTransactions;
-    }
-
+    public int getTotalTransactions() { return totalTransactions; }
     public void setTotalTransactions(int totalTransactions) {
         this.totalTransactions = totalTransactions;
     }
 
-    public double getRoiPercentage() {
-        return roiPercentage;
-    }
-
+    public double getRoiPercentage() { return roiPercentage; }
     public void setRoiPercentage(double roiPercentage) {
         this.roiPercentage = roiPercentage;
     }
 
-    public Influencer getInfluencer() {
-        return influencer;
-    }
-
+    public Influencer getInfluencer() { return influencer; }
     public void setInfluencer(Influencer influencer) {
         this.influencer = influencer;
     }
 
-    public DiscountCode getDiscountCode() {
-        return discountCode;
-    }
-
+    public DiscountCode getDiscountCode() { return discountCode; }
     public void setDiscountCode(DiscountCode discountCode) {
         this.discountCode = discountCode;
     }
