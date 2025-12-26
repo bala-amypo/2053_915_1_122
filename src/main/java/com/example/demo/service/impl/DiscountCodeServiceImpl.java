@@ -26,7 +26,6 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
         this.campaignRepository = campaignRepository;
     }
 
-    // ✅ CREATE
     @Override
     public DiscountCode createDiscountCode(DiscountCode code) {
 
@@ -44,14 +43,12 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
         return discountCodeRepository.save(code);
     }
 
-    // ✅ READ BY ID
     @Override
     public DiscountCode getDiscountCodeById(Long id) {
         return discountCodeRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("DiscountCode not found"));
     }
 
-    // ✅ UPDATE (THIS FIXES YOUR COMPILATION ERROR)
     @Override
     public DiscountCode updateDiscountCode(Long id, DiscountCode code) {
 
@@ -64,13 +61,11 @@ public class DiscountCodeServiceImpl implements DiscountCodeService {
         return discountCodeRepository.save(existing);
     }
 
-    // ✅ GET BY INFLUENCER
     @Override
     public List<DiscountCode> getCodesForInfluencer(Long influencerId) {
         return discountCodeRepository.findByInfluencer_Id(influencerId);
     }
 
-    // ✅ GET BY CAMPAIGN
     @Override
     public List<DiscountCode> getCodesForCampaign(Long campaignId) {
         return discountCodeRepository.findByCampaign_Id(campaignId);

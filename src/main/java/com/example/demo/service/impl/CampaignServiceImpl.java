@@ -16,7 +16,6 @@ public class CampaignServiceImpl implements CampaignService {
         this.repo = repo;
     }
 
-    // ✅ THIS IS THE MISSING PIECE
     @Override
     public Campaign createCampaign(Campaign campaign) {
         return repo.save(campaign);

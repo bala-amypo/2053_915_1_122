@@ -16,7 +16,6 @@ public class User {
     private String role;
     private boolean active;
 
-    // ✅ MUST remain Timestamp (test requires it)
     private Timestamp createdAt;
 
     // ===== Getters & Setters =====
@@ -53,17 +52,14 @@ public class User {
         this.active = active;
     }
 
-    // ✅ Test reads this as Timestamp
     public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    // ✅ Test sometimes passes Timestamp
     public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 
-    // ✅ Test sometimes passes LocalDateTime
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = Timestamp.valueOf(createdAt);
     }

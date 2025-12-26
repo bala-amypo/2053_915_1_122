@@ -30,11 +30,9 @@ public class SaleTransactionServiceImpl implements SaleTransactionService {
     @Override
     public SaleTransaction createSale(Object request) {
 
-        // ✅ Convert LinkedHashMap → SaleTransaction
         SaleTransaction sale =
                 objectMapper.convertValue(request, SaleTransaction.class);
 
-        // ✅ Resolve DiscountCode properly
         if (sale.getDiscountCode() != null && sale.getDiscountCode().getId() != null) {
             DiscountCode code = discountRepo.findById(
                     sale.getDiscountCode().getId()
