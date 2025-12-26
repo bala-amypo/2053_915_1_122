@@ -9,6 +9,8 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/sales")
 public class SaleTransactionController {
@@ -37,17 +39,23 @@ public class SaleTransactionController {
     }
 
     @GetMapping("/discount/{codeId}")
-    public ResponseEntity<?> getSalesForCode(@PathVariable Long codeId) {
+    public ResponseEntity<List<SaleTransaction>> getSalesForCode(
+            @PathVariable Long codeId
+    ) {
         return ResponseEntity.ok(service.getSalesForCode(codeId));
     }
 
     @GetMapping("/influencer/{influencerId}")
-    public ResponseEntity<?> getSalesForInfluencer(@PathVariable Long influencerId) {
+    public ResponseEntity<List<SaleTransaction>> getSalesForInfluencer(
+            @PathVariable Long influencerId
+    ) {
         return ResponseEntity.ok(service.getSalesForInfluencer(influencerId));
     }
 
     @GetMapping("/campaign/{campaignId}")
-    public ResponseEntity<?> getSalesForCampaign(@PathVariable Long campaignId) {
+    public ResponseEntity<List<SaleTransaction>> getSalesForCampaign(
+            @PathVariable Long campaignId
+    ) {
         return ResponseEntity.ok(service.getSalesForCampaign(campaignId));
     }
 }
